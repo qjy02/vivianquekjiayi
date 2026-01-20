@@ -1,0 +1,199 @@
+/* Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap');
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+body {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  min-height: 100vh;
+}
+
+/* Main content container adjustments for mobile */
+main {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (max-width: 640px) {
+  main {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+  }
+
+  
+  /* Make track info take full width on mobile */
+  .w-1\/4.min-w-\[140px\] {
+    width: 100%;
+    min-width: auto;
+  }
+  
+  .flex-1.max-w-xl {
+    width: 100%;
+    order: 3; /* Move controls to bottom on mobile */
+  }
+  
+  .hidden.sm\:flex.w-1\/4 {
+    display: none;
+  }
+  
+  /* Adjust partner logos for mobile */
+  .slider .slide-track img {
+    height: 2rem;
+    width: 6rem;
+  }
+  
+  /* Adjust skills section for mobile */
+  .flex-wrap {
+    justify-content: flex-start;
+  }
+  
+  .flex-wrap span {
+    font-size: 0.875rem;
+    padding: 0.375rem 0.75rem;
+  }
+}
+
+/* Medium screens (tablets) */
+@media (max-width: 768px) {
+  main {
+    max-width: 100%;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  /* Adjust project cards */
+  .grid.gap-6 {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Adjust timeline for mobile */
+  .relative.border-l {
+    margin-left: 0.5rem;
+  }
+  
+  .ml-8 {
+    margin-left: 1.5rem;
+  }
+  
+  /* Adjust header image */
+  .w-32.h-32 {
+    width: 6rem;
+    height: 6rem;
+  }
+}
+
+/* Animations */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* Infinite Scroll Animation */
+.slider .slide-track {
+  animation: scroll 20s linear infinite;
+  width: max-content;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Pause on hover (Optional) */
+.slider:hover .slide-track {
+  animation-play-state: paused;
+}
+
+/* Line Clamping */
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+/* Ensure text doesn't overflow on mobile */
+h1, h2, h3, p, span {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Improve tap targets on mobile */
+button, a {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Music Player Section */
+@media (max-width: 640px) {
+  .music-player-container {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 0.5rem 0 !important;
+    gap: 0.5rem !important;
+  }
+  
+  .music-player-container > div {
+    width: 100% !important;
+  }
+  
+  .music-player-container > div:first-child {
+    order: 1;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 0.5rem;
+  }
+  
+  .music-player-container > div:nth-child(2) {
+    order: 2;
+  }
+}
+
+/* Music player transitions */
+.music-player-enter-active,
+.music-player-leave-active {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.music-player-enter-from,
+.music-player-leave-to {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+/* Sink-down effect for the toggle button */
+.sink-down {
+  animation: sinkDown 0.3s ease-out;
+}
+
+@keyframes sinkDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
