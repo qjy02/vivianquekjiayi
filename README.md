@@ -1,10 +1,10 @@
 <div align="center">
   
-# 🌸 My Personal Webpage
+# 🌸 My Personal Corner 🌸
   
-<img src="https://github.com/qjy02/kotobi-corner/raw/main/public/images/kotobi.png" alt="Kotobi" width="120" />
+<img width="120" height="150" alt="Girl" src="https://github.com/user-attachments/assets/fc67a951-41a3-4c52-9c8c-923f4461ecd5" />
 
-~My personal webpage and portfolio site~
+~ My personal webpage and portfolio site ~
 
 Built with **Nuxt 3**, **Vue**, and **Tailwind CSS**.
 
@@ -20,25 +20,20 @@ Built with **Nuxt 3**, **Vue**, and **Tailwind CSS**.
 
 ## 🎯 About This Project
 
-This is my personal web space designed to feel calm, warm, and intentional.
+This is my personal corner designed to feel calm, warm, and intentional.
 
 It serves as:
 - A portfolio
-- A creative journal
-- A gentle introduction to who I am as a software developer
+- An introduction to who I am as a software developer
+- ~Listen to music~
 
-This project was built using **Nuxt 3** to explore server-rendered Vue applications, file-based routing, and modern frontend workflows — while focusing heavily on **visual calm, spacing, and micro-interactions**.
+This project began as an exploration of Nuxt.js and Vue.js, drawn by how calm and visually pleasing the developer experience felt—especially with the built-in DevTools that made designing the interface intuitive and fun. 
 
-The name *Kotobi* comes from the Japanese feeling of birds, wood, and quiet moments 🌙
+It was built with Nuxt 3 to experiment with server-rendered Vue applications, file-based routing, and modern frontend workflows.
 
 ---
 
 ## ✨ Features
-
-### 🧘 Minimal & Calm Design
-- Neutral color palette
-- Soft shadows and spacing
-- Subtle animations and transitions
 
 ### 🧩 Portfolio Sections
 - **About Me** introduction
