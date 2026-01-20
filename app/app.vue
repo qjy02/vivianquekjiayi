@@ -1,7 +1,6 @@
 <script setup>
-// Get base URL from runtime config or use default
-const { public: publicConfig } = useRuntimeConfig()
-const baseURL = publicConfig?.app?.baseURL || '/'
+const isProd = typeof window !== 'undefined' && window.location.hostname === 'qjy02.github.io'
+const baseURL = isProd ? '/vivianquekjiayi/' : '/'
 
 useHead({
   title: 'Vivian Quek Jia Yi',
