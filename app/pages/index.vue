@@ -44,13 +44,13 @@ const playlist = [
   {
     title: '小小空间',
     artist: '夕野ことび',
-    src: '/music/小小空间.mp3',
+    src: '/music/littlespace.mp3',
     color: 'from-indigo-500 to-purple-600'
   },
   {
     title: '微光角落',
     artist: '夕野ことび',
-    src: '/music/微光角落.mp3',
+    src: '/music/shiningcorner.mp3',
     color: 'from-emerald-500 to-teal-600'
   }
 ]
@@ -507,25 +507,6 @@ onUnmounted(() => {
       </div>
     </transition>
 
-    <!-- Music Player Button -->
-    <div class="absolute top-0 right-0">
-      <transition name="fade">
-        <button
-          v-if="!musicPlayerExpanded"
-          @click="toggleMusicPlayer"
-          :class="{'sink-down': isToggling}"
-          class="flex items-center justify-center
-                px-5 py-1 rounded-full
-                bg-transparent text-black
-                transition-all duration-150"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z" />
-          </svg>
-        </button>
-      </transition>
-    </div>
-
     <!-- Main Section-->
     <main class="max-w-2xl mx-auto px-6 py-16 relative">
       <!-- Header Section-->
@@ -876,6 +857,25 @@ onUnmounted(() => {
           </svg>
         </button>
       </transition>
+
+      <!-- Music Player Button -->
+      <div class="fixed top-4 right-4 z-50">
+        <transition name="fade">
+        <button
+          v-if="!musicPlayerExpanded"
+          @click="toggleMusicPlayer"
+          :class="{'sink-down': isToggling}"
+          class="flex items-center justify-center
+                px-5 py-1 rounded-full
+                bg-transparent text-black
+                transition-all duration-150"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z" />
+          </svg>
+        </button>
+      </transition>
+      </div>
 
       <!-- Music Player Section -->
       <transition name="music-player">
