@@ -3,13 +3,24 @@ import { ref, computed, nextTick, onMounted } from 'vue'
 import { useHead } from '#imports'
 
 // --- JS Media Tags Library ---
-useHead({
-  script: [
-    {
-      src: 'https://cdn.jsdelivr.net/npm/jsmediatags@3.9.7/dist/jsmediatags.min.js',
-      async: true
+onMounted(() => {
+  // Check if jsmediatags is already loaded
+  if (typeof jsmediatags === 'undefined') {
+    // Load jsmediatags synchronously
+    const script = document.createElement('script')
+    script.src = 'https://cdn.jsdelivr.net/npm/jsmediatags@3.9.7/dist/jsmediatags.min.js'
+    script.onload = () => {
+      console.log('jsmediatags loaded successfully')
+      loadAllAlbumArts() // Now load album arts
     }
-  ]
+    script.onerror = () => {
+      console.error('Failed to load jsmediatags')
+    }
+    document.head.appendChild(script)
+  } else {
+    // Already loaded
+    loadAllAlbumArts()
+  }
 })
 
 // --- State Management ---
