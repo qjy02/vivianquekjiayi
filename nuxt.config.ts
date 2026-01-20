@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   
   // GitHub Pages
   app: {
-    baseURL: '/vivianquekjiayi/', // Must match your repo name exactly
+    baseURL: process.env.NODE_ENV === 'production' ? '/vivianquekjiayi/' : '/',
     buildAssetsDir: '_nuxt/', // Important for assets
     cdnURL: 'https://qjy02.github.io/vivianquekjiayi/', // Full CDN URL
   },
