@@ -1,4 +1,8 @@
 <script setup>
+// Get base URL from runtime config or use default
+const { public: publicConfig } = useRuntimeConfig()
+const baseURL = publicConfig?.app?.baseURL || '/'
+
 useHead({
   title: 'Vivian Quek Jia Yi',
   meta: [
@@ -15,10 +19,12 @@ useHead({
     {
       rel: 'icon',
       type: 'image/png',
-      href: '/images/Vispiv.png'
+      href: `${baseURL}images/Vispiv.png`
     }
   ]
 })
+
+const bgImageUrl = `${baseURL}images/nature.jpg`
 </script>
 
 <template>
@@ -26,7 +32,7 @@ useHead({
     <!-- Background Image -->
     <div 
       class="fixed inset-0 bg-cover bg-center bg-no-repeat bg-fixed"
-      :style="{ backgroundImage: 'url(/images/nature.jpg)' }"
+      :style="{ backgroundImage: `url(${bgImageUrl})` }"
     ></div>
     
     <!-- High opacity overlay (95% white) Background -->
