@@ -5,19 +5,19 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   modules: ['@nuxtjs/tailwindcss'],
   
-  // Github Pages
+  // GitHub Pages
   app: {
-    baseURL: '/vivianquekjiayi/', // Repository name
-    buildAssetsDir: 'assets',
+    baseURL: '/vivianquekjiayi/', // Must match your repo name exactly
+    buildAssetsDir: '_nuxt/', // Important for assets
+    cdnURL: 'https://qjy02.github.io/vivianquekjiayi/', // Full CDN URL
   },
   
-  // Generate static site
-  ssr: true,
+  // Enable static generation
+  ssr: false, // Use false for GitHub Pages (static site)
   
-  // Routes
-  nitro: {
-    prerender: {
-      routes: ['/']
-    }
+  // Route rules
+  routeRules: {
+    '/': { prerender: true },
+    '/**': { prerender: true }
   }
 })
