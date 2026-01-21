@@ -188,6 +188,11 @@ const onLoadedMetadata = () => {
   }
 }
 
+const getImagePath = (imagePath) => {
+  if (!imagePath) return ''
+  return isProd ? `/vivianquekjiayi${imagePath}` : imagePath
+}
+
 const seek = (e) => {
   if (!audioRef.value || duration.value === 0) return
   
@@ -522,14 +527,14 @@ const projects = [
   {
     title: 'Predicting churn with filter-based techniques and deep learning',
     desc: 'A customer churn prediction model integrating attribute selection analysis with deep learning to improve prediction performance while reducing feature dimensions in the telecommunications industry',
-    tags: ['Python', 'Tensorflow', 'Pandas', 'Scikit-learn', 'Deep Learning'],
+    tags: ['Python', 'Tensorflow', 'Deep Learning'],
     link: 'https://ijece.iaescore.com/index.php/IJECE/article/view/33625',
     image: ''
   },
   {
     title: 'Customer Churn Prediction through Attribute Selection Analysis and Support Vector Machine',
     desc: 'A churn prediction model using attribute selection analysis and Support Vector Machine that achieves better performance with reduced feature dimensions compared to full feature set utilization',
-    tags: ['Python', 'Tensorflow', 'Pandas', 'Scikit-learn', 'Machine Learning'],
+    tags: ['Python', 'Tensorflow', 'Machine Learning'],
     link: 'https://jtde.telsoc.org/index.php/jtde/article/view/777',
     image: ''
   },
@@ -901,7 +906,7 @@ onUnmounted(() => {
                   <!-- Image -->
                   <div v-if="project.image" class="w-12 h-12 rounded-lg overflow-hidden p-1">
                     <img 
-                      :src="project.image" 
+                      :src="getImagePath(project.image)"
                       :alt="project.title" 
                       class="w-full h-full object-contain rounded"
                       loading="lazy"
