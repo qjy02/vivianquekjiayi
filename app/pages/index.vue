@@ -714,15 +714,14 @@ onUnmounted(() => {
     <main class="max-w-2xl mx-auto px-6 py-16 relative">
       <!-- Header Section-->
       <header class="flex flex-col items-center text-center">
-        
         <div class="relative group">
           <div class="absolute -inset-1 bg-gradient-to-r from-neutral-200 to-neutral-300 rounded-full opacity-50 blur group-hover:opacity-75 transition duration-500"></div>
-          <img
-            src="/images/Girl/aboutme.jpg"
-            alt="Vivian Quek"
-            class="relative w-32 h-32 rounded-full object-cover shadow-sm ring-4 ring-white"
-          />
-        </div>
+            <img
+              :src="getImagePath('/images/Girl/Girl_Profile.png')"
+              alt="Vivian Quek"
+              class="relative w-32 h-32 rounded-full object-cover shadow-sm ring-4 ring-white/30"
+            />
+          </div>
 
         <h1 class="mt-6 text-3xl font-semibold tracking-wide text-neutral-900">
           Vivian Quek Jia Yi
