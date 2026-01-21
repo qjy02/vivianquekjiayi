@@ -249,7 +249,10 @@ const prevTrack = () => {
 }
 
 // Contact Form Methods
-const openContactForm = () => {
+const openContactForm = (event) => {
+  if (event) {
+    event.preventDefault()
+  }
   showContactForm.value = true
 }
 
@@ -446,7 +449,6 @@ const socialLinks = [
     `
   }
 ]
-
 
 // --- Data: Skills ---
 const skills = [
@@ -752,7 +754,7 @@ onUnmounted(() => {
             :href="link.url" 
             :target="link.type === 'email' ? '_self' : '_blank'"
             :rel="link.type === 'email' ? '' : 'noopener noreferrer'"
-            @click.prevent="link.type === 'email' ? openContactForm() : null"
+            @click="link.type === 'email' ? openContactForm($event) : null"
             class="group flex items-center gap-2 hover:text-neutral-900 transition-colors cursor-pointer"
           >
             <span v-html="link.icon" class="icon-container"></span>
