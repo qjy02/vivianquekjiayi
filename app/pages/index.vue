@@ -1,6 +1,11 @@
 <script setup>
 import { ref, computed, nextTick, onMounted } from 'vue'
-import { useHead } from '#imports'
+import emailjs from '@emailjs/browser'
+
+// Initialize EmailJS
+onMounted(() => {
+  emailjs.init('jgVqt-EypWLu2jC9y') // PUBLIC KEY
+})
 
 // --- JS Media Tags Library ---
 onMounted(() => {
@@ -11,7 +16,7 @@ onMounted(() => {
     script.src = 'https://cdn.jsdelivr.net/npm/jsmediatags@3.9.7/dist/jsmediatags.min.js'
     script.onload = () => {
       console.log('jsmediatags loaded successfully')
-      loadAllAlbumArts() // Now load album arts
+      loadAllAlbumArts()
     }
     script.onerror = () => {
       console.error('Failed to load jsmediatags')
@@ -39,23 +44,32 @@ const duration = ref(0)
 const currentTrackIndex = ref(0)
 const albumArts = ref({})
 const isLoading = ref(false)
+const showContactForm = ref(false)
+const contactForm = ref({
+  name: '',
+  email: '',
+  subject: '',
+  message: ''
+})
+const formErrors = ref({})
+const isSubmitting = ref(false)
+const isProd = typeof window !== 'undefined' && window.location.hostname === 'qjy02.github.io'
+const baseURL = isProd ? '/vivianquekjiayi/' : '/'
 
 const playlist = [
   {
     title: '小小空间',
     artist: '夕野ことび',
-    src: '/music/littlespace.mp3',
+    src: `${baseURL}music/littlespace.mp3`,
     color: 'from-indigo-500 to-purple-600'
   },
   {
     title: '微光角落',
     artist: '夕野ことび',
-    src: '/music/shiningcorner.mp3',
+    src: `${baseURL}music/shiningcorner.mp3`,
     color: 'from-emerald-500 to-teal-600'
   }
 ]
-
-const currentTrack = computed(() => playlist[currentTrackIndex.value])
 
 const extractAlbumArt = async (src) => {
   return new Promise(async (resolve) => {
@@ -94,6 +108,8 @@ const extractAlbumArt = async (src) => {
     }
   })
 }
+
+const currentTrack = computed(() => playlist[currentTrackIndex.value])
 
 const loadAllAlbumArts = async () => {
   for (const track of playlist) {
@@ -223,6 +239,173 @@ const prevTrack = () => {
   playNewTrack()
 }
 
+// Contact Form Methods
+const openContactForm = () => {
+  showContactForm.value = true
+}
+
+const closeContactForm = () => {
+  showContactForm.value = false
+  // Reset form
+  contactForm.value = {
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  }
+  formErrors.value = {}
+  isSubmitting.value = false
+}
+
+const validateEmailField = () => {
+  // Clear error when user starts typing
+  if (formErrors.value.email) {
+    delete formErrors.value.email
+  }
+  
+  // Only validate if there's content
+  if (contactForm.value.email.trim()) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(contactForm.value.email)) {
+      formErrors.value.email = 'Please enter a valid email address'
+    }
+  }
+}
+
+const validateEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return emailRegex.test(email)
+}
+
+const validateForm = () => {
+  formErrors.value = {}
+  let isValid = true
+
+  // Validate name
+  if (!contactForm.value.name.trim()) {
+    formErrors.value.name = 'Name is required'
+    isValid = false
+  }
+
+  // Validate email
+  if (!contactForm.value.email.trim()) {
+    formErrors.value.email = 'Email is required'
+    isValid = false
+  } else if (!validateEmail(contactForm.value.email)) {
+    formErrors.value.email = 'Please enter a valid email address'
+    isValid = false
+  }
+
+  // Validate subject
+  if (!contactForm.value.subject.trim()) {
+    formErrors.value.subject = 'Subject is required'
+    isValid = false
+  }
+
+  // Validate message
+  if (!contactForm.value.message.trim()) {
+    formErrors.value.message = 'Message is required'
+    isValid = false
+  }
+
+  return isValid
+}
+
+const handleSubmit = async () => {
+  if (!validateForm()) {
+    return
+  }
+
+  isSubmitting.value = true
+
+  try {
+    const serviceID = 'service_02kotobi02'
+    const templateID = 'template_0jj097w'
+    const publicKey = 'jgVqt-EypWLu2jC9y' // Your public key
+
+    const now = new Date()
+    const date = now.toLocaleDateString('en-MY', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    })
+    const time = now.toLocaleTimeString('en-MY', { 
+      hour: '2-digit', 
+      minute: '2-digit',
+      hour12: true 
+    })
+
+    const templateParams = {
+      title: 'Kotobi Corner - New Message',
+      from_name: contactForm.value.name,
+      from_email: contactForm.value.email,
+      subject: contactForm.value.subject,
+      message: contactForm.value.message,
+      date: date,
+      time: time, 
+      to_email: 'jyquek32@gmail.com',
+      reply_to: contactForm.value.email
+    }
+
+    console.log('Sending email with params:', templateParams) // For debugging
+
+    // Send email using EmailJS
+    const response = await emailjs.send(serviceID, templateID, templateParams, publicKey)
+    
+    console.log('Email sent successfully!', response.status, response.text)
+    
+    // Show success message
+    alert('Thank you! Your message has been sent successfully. I\'ll get back to you soon!')
+    
+    // Close form
+    closeContactForm()
+    
+  } catch (error) {
+    console.error('Failed to send email:', error)
+    
+    // Show more detailed error
+    if (error.text) {
+      console.error('EmailJS error details:', error.text)
+      
+      if (error.text.includes('Invalid user ID format')) {
+        alert('Configuration error. Please check your EmailJS public key.')
+      } else if (error.text.includes('Service not found')) {
+        alert('Service ID not found. Please check your EmailJS service ID.')
+      } else if (error.text.includes('Template not found')) {
+        alert('Template not found. Please check your EmailJS template ID.')
+      } else {
+        alert('Sorry, there was an error sending your message: ' + error.text)
+      }
+    } else {
+      alert('Sorry, there was an error sending your message. Please try again or email me directly at jyquek32@gmail.com')
+    }
+    
+    // Fallback to mailto if EmailJS fails
+    const subject = encodeURIComponent(contactForm.value.subject)
+    const body = encodeURIComponent(
+      `Name: ${contactForm.value.name}\nEmail: ${contactForm.value.email}\n\nMessage:\n${contactForm.value.message}`
+    )
+    
+    const mailtoLink = `mailto:jyquek32@gmail.com?subject=${subject}&body=${body}`
+    
+    // Show user options
+    if (confirm('Unable to send automatically. Would you like to open your email client instead?')) {
+      const link = document.createElement('a')
+      link.href = mailtoLink
+      link.target = '_blank'
+      link.rel = 'noopener noreferrer'
+      
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      
+      closeContactForm()
+    } else {
+      isSubmitting.value = false
+    }
+  }
+}
+
 // --- Data: Social Links ---
 const socialLinks = [
   {
@@ -245,7 +428,8 @@ const socialLinks = [
   },
   {
     name: 'Email',
-    url: 'mailto:jyquek32@gmail.com',
+    url: '#',
+    type: 'email',
     icon: `
       <svg class="w-5 h-5 stroke-current group-hover:text-red-500 transition-colors" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
@@ -262,31 +446,31 @@ const skills = [
     items: [
       'HTML', 'CSS', 'Tailwind CSS', 'JavaScript (ES6+)',
       'TypeScript', 'React',
-      'Angular', 'Quasar', 'Vite', 'Vue.js', 'Nuxt.js', 'Next.js'
+      'Angular', 'Quasar', 'Vite', 'Vue.js', 'Nuxt.js', 'Next.js', 'EmailJS'
     ]
   },
   {
     category: 'Backend',
     items: [
-      'Python', 'Django REST', 'FastAPI', 'Node.js', 'PHP', 'Java', 'C', 'C++'
+      'Python', 'Django', 'FastAPI', 'Node.js', 'PHP', 'Java', 'C', 'C++'
     ]
   },
   {
     category: 'Databases & APIs',
     items: [
-      'MySQL', 'MSSQL (Microsoft SQL Server)', 'PostgreSQL', 'REST APIs', 'Postman', 'SQLYog'
-    ]
-  },
-  {
-    category: 'UI/UX & Design Tools',
-    items: [
-      'Figma', 'Storybook', 'Canva', 'Mockflow', 'Draw.io', 'Visual Studio Code', 'IntelliJ IDEA', 'Oracle', 'CodeBlocks'
+      'MySQL', 'MSSQL (Microsoft SQL Server)', 'PostgreSQL', 'SQLYog', 'Postman', 'Swagger', 'REST APIs'
     ]
   },
   {
     category: 'Development & DevOps Tools',
     items: [
-      'Git', 'GitHub', 'Jira', 'Linux (Ubuntu)', 'WinSCP', 'PuTTY', 'ngrok'
+      'Git', 'GitHub', 'Visual Studio Code', 'IntelliJ IDEA', 'Oracle', 'CodeBlocks', 'Jira', 'Linux (Ubuntu)', 'WinSCP', 'PuTTY', 'ngrok'
+    ]
+  },
+  {
+    category: 'UI/UX & Design Tools',
+    items: [
+      'Figma', 'Storybook', 'Canva', 'Mockflow', 'Draw.io'
     ]
   },
   {
@@ -316,39 +500,45 @@ const visibleSkills = computed(() => {
 const projects = [
   {
     title: 'Personal Portfolio Website',
-    desc: 'A corner to share a little about myselfS',
+    desc: 'A corner to share a little about myself',
     tags: ['Vue', 'Vite', 'HTML', 'Tailwind CSS', 'Nuxt.js', 'JavaScript'],
-    link: 'https://qjy02.github.io/vivianquekjiayi/'
+    link: 'https://qjy02.github.io/vivianquekjiayi/',
+    image: '/images/Girl/Girl_Code.png'
   },
   {
     title: 'Vipo Playground',
     desc: 'An interactive web playground featuring fun games with Vipo, a virtual mascot companion',
     tags: ['React', 'Vite', 'HTML', 'Tailwind CSS', 'JavaScript'],
-    link: 'https://qjy02.github.io/react/'
+    link: 'https://qjy02.github.io/react/',
+    image: '/images/Vipo/vipo_excited.png'
   },
   {
     title: 'Vispiv Collectives',
     desc: 'A collection of mini web applications or tools',
-    tags: ['Vanilla HTML', 'Tailwind CSS', 'JavaScript'],
-    link: 'https://qjy02.github.io/vispiv/'
+    tags: ['HTML', 'CSS', 'JavaScript'],
+    link: 'https://qjy02.github.io/vispiv/',
+    image: '/images/Logo/Vispiv.png'
   },
   {
     title: 'Predicting churn with filter-based techniques and deep learning',
     desc: 'A customer churn prediction model integrating attribute selection analysis with deep learning to improve prediction performance while reducing feature dimensions in the telecommunications industry',
-    tags: ['Tensorflow', 'Keras', 'Python', 'Pandas', 'Scikit-learn', 'Deep Learning'],
-    link: 'https://ijece.iaescore.com/index.php/IJECE/article/view/33625'
+    tags: ['Python', 'Tensorflow', 'Pandas', 'Scikit-learn', 'Deep Learning'],
+    link: 'https://ijece.iaescore.com/index.php/IJECE/article/view/33625',
+    image: ''
   },
   {
     title: 'Customer Churn Prediction through Attribute Selection Analysis and Support Vector Machine',
     desc: 'A churn prediction model using attribute selection analysis and Support Vector Machine that achieves better performance with reduced feature dimensions compared to full feature set utilization',
-    tags: ['Tensorflow', 'Keras', 'Python', 'Pandas', 'Scikit-learn', 'Machine Learning'],
-    link: 'https://jtde.telsoc.org/index.php/jtde/article/view/777'
+    tags: ['Python', 'Tensorflow', 'Pandas', 'Scikit-learn', 'Machine Learning'],
+    link: 'https://jtde.telsoc.org/index.php/jtde/article/view/777',
+    image: ''
   },
   {
     title: 'Java Tutorial',
     desc: 'A collection of Java tutorials and examples for beginners to learn Java programming',
     tags: ['Java'],
-    link: 'https://github.com/qjy02/java_tutorial/'
+    link: 'https://github.com/qjy02/java_tutorial/',
+    image: ''
   }
 ]
 
@@ -515,7 +705,7 @@ onUnmounted(() => {
         <div class="relative group">
           <div class="absolute -inset-1 bg-gradient-to-r from-neutral-200 to-neutral-300 rounded-full opacity-50 blur group-hover:opacity-75 transition duration-500"></div>
           <img
-            src="/images/kotobi.png"
+            src="/images/Girl/kotobi.png"
             alt="Vivian Quek"
             class="relative w-32 h-32 rounded-full object-cover shadow-sm ring-4 ring-white"
           />
@@ -551,8 +741,10 @@ onUnmounted(() => {
             v-for="link in socialLinks" 
             :key="link.name"
             :href="link.url" 
-            target="_blank"
-            class="group flex items-center gap-2 hover:text-neutral-900 transition-colors"
+            :target="link.type === 'email' ? '_self' : '_blank'"
+            :rel="link.type === 'email' ? '' : 'noopener noreferrer'"
+            @click.prevent="link.type === 'email' ? openContactForm() : null"
+            class="group flex items-center gap-2 hover:text-neutral-900 transition-colors cursor-pointer"
           >
             <span v-html="link.icon" class="icon-container"></span>
             <span class="underline-offset-4 group-hover:underline">{{ link.name }}</span>
@@ -624,13 +816,47 @@ onUnmounted(() => {
 
       <!-- Projects Section -->
       <section class="mt-16">
-        <h2 class="text-lg font-semibold text-neutral-800 mb-6 flex items-center gap-2">
-          <svg xmlns="http://www.w3.org/2000/svg" 
-              class="w-4 h-4 text-neutral-400 mt-0.5" 
-              fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-          </svg>
-          Projects
+        <h2 class="text-lg font-semibold text-neutral-800 mb-6">
+          <a 
+            href="https://drive.google.com/file/d/1-2k7SymIHcGMZ-tdoc6SUE1eLNNCMSpH/view?usp=sharing" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            title="View my full projects portfolio"
+            class="group relative inline-flex items-center gap-2 no-underline hover:no-underline"
+          >
+            <!-- Icon -->
+            <span class="text-neutral-400 flex items-center justify-center mt-0.5">
+              <svg xmlns="http://www.w3.org/2000/svg" 
+                  class="w-4 h-4" 
+                  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+              </svg>
+            </span>
+            
+            <!-- Text with underline effect -->
+            <span class="relative">
+              Projects
+              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 group-hover:w-full transition-all duration-300"></span>
+            </span>
+            
+            <!-- Click me! -->
+            <span class="click-hint bg-blue-500 text-white px-2 py-1 rounded-md text-xs font-medium whitespace-nowrap shadow-md animate-pulse ml-2">
+              👈 Click me!
+            </span>
+            
+            <!-- External link icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" 
+                class="w-3.5 h-3.5 text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ml-1" 
+                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+            
+            <!-- Tooltip on hover -->
+            <span class="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-neutral-800 text-white text-xs px-3 py-1.5 rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+              View my full projects portfolio
+              <span class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-neutral-800 rotate-45"></span>
+            </span>
+          </a>
         </h2>
 
         <div class="grid gap-6 sm:gap-8">
@@ -656,39 +882,47 @@ onUnmounted(() => {
               <!-- Title and description -->
               <div class="flex justify-between items-start gap-4 mb-4">
                 <div class="min-w-0 flex-1">
-                  <div class="flex items-center gap-3 mb-2">
-                    <!-- Decorative circle -->
-                    <div class="w-2.5 h-2.5 rounded-full bg-gradient-to-br from-rose-400 to-indigo-400 
-                                group-hover:from-rose-500 group-hover:to-indigo-500
-                                transition-colors duration-300 flex-shrink-0"></div>
-                    <h3 class="font-medium text-neutral-900 group-hover:text-neutral-800 
-                              transition-colors duration-300 truncate text-base tracking-tight">
-                      {{ project.title }}
-                    </h3>
-                  </div>
+                  <!-- Title -->
+                  <h3 class="font-medium text-neutral-900 group-hover:text-neutral-800 
+                            transition-colors duration-300 text-base tracking-tight mb-3">
+                    {{ project.title }}
+                  </h3>
                   
                   <!-- Description with visible text -->
-                  <p class="text-sm text-neutral-700 leading-relaxed mt-3 pl-5 
+                  <p class="text-sm text-neutral-700 leading-relaxed mt-3 
                           border-l border-neutral-300/50 group-hover:border-neutral-400/60 
-                          transition-colors duration-300">
+                          transition-colors duration-300 pl-4">
                     {{ project.desc }}
                   </p>
                 </div>
                 
-                <!-- Link -->
-                <a :href="project.link" target="_blank" rel="noopener noreferrer" 
-                  class="text-neutral-500 hover:text-rose-600 transition-all duration-300 
-                          flex-shrink-0 mt-1 p-2 hover:bg-rose-50/50 rounded-lg group/link">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" fill="none" 
-                      viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" 
-                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </a>
+                <!-- Image and Link container -->
+                <div class="flex items-center gap-2 flex-shrink-0 mt-1">
+                  <!-- Image -->
+                  <div v-if="project.image" class="w-12 h-12 rounded-lg overflow-hidden p-1">
+                    <img 
+                      :src="project.image" 
+                      :alt="project.title" 
+                      class="w-full h-full object-contain rounded"
+                      loading="lazy"
+                    />
+                  </div>
+                  
+                  <!-- Link Button -->
+                  <a :href="project.link" target="_blank" rel="noopener noreferrer" 
+                    class="text-neutral-500 hover:text-rose-600 transition-all duration-300 
+                            p-2 hover:bg-rose-50/50 rounded-lg group/link flex items-center justify-center w-10 h-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" 
+                        viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" 
+                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </div>
               </div>
               
               <!-- Tags -->
-              <div class="mt-6 pt-5 border-t border-neutral-300/40 group-hover:border-neutral-400/50 transition-colors duration-300 pl-5">
+              <div class="mt-6 pt-5 border-t border-neutral-300/40 group-hover:border-neutral-400/50 transition-colors duration-300">
                 <div class="flex flex-wrap gap-2">
                   <span v-for="tag in project.tags" :key="tag" 
                         class="text-xs font-medium text-sky-700/80 
@@ -725,7 +959,11 @@ onUnmounted(() => {
 
         <div class="relative border-l border-neutral-200 ml-3 space-y-10">
           <div v-for="(exp, index) in workExperiences" :key="index" class="ml-8 relative">
-            <span class="absolute -left-[39px] top-1.5 h-3.5 w-3.5 rounded-full border-2 border-white bg-blue-400 ring-4 ring-neutral-50"></span>            
+            <span class="absolute -left-[44px] top-0 flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-b from-white/90 via-white/87 to-white/85 shadow-sm ring-2 ring-neutral-100">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+            </span>
             <span class="text-xs font-semibold tracking-wide text-neutral-400 uppercase">{{ exp.year }}</span>
             <h3 class="mt-1 text-base font-medium text-neutral-800">{{ exp.role }}</h3>
             <span class="text-sm text-neutral-500">{{ exp.company }}</span>
@@ -778,7 +1016,11 @@ onUnmounted(() => {
         
         <div class="relative border-l border-neutral-200 ml-3 space-y-10">
           <div v-for="(edu, index) in education" :key="index" class="ml-8 relative">
-            <span class="absolute -left-[39px] top-1.5 h-3.5 w-3.5 rounded-full border-2 border-white bg-green-400 ring-4 ring-neutral-50"></span>
+            <span class="absolute -left-[44px] top-0 flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-b from-white/90 via-white/87 to-white/85 shadow-sm ring-2 ring-neutral-100">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </span>
             
             <span class="text-xs font-semibold tracking-wide text-neutral-400 uppercase">{{ edu.year }}</span>
             <h3 class="mt-1 text-base font-medium text-neutral-800">{{ edu.role }}</h3>
@@ -971,6 +1213,116 @@ onUnmounted(() => {
               <span>{{ formatTime(currentTime) }}</span>
               <span>{{ formatTime(duration) }}</span>
             </div>
+          </div>
+        </div>
+      </transition>
+
+      <!-- Contact Form Popup -->
+      <transition name="fade">
+        <div v-if="showContactForm" class="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+          <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto" @click.stop>
+            <!-- Header -->
+            <div class="flex justify-between items-center p-4 border-b border-neutral-200">
+              <h3 class="text-lg font-semibold text-neutral-900">Let's Connect</h3>
+              <button 
+                @click="closeContactForm" 
+                class="text-red-500 hover:text-red-700 transition-colors p-1"
+                aria-label="Close"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor">
+                  <path stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+
+            </div>
+
+            <!-- Form -->
+            <form @submit.prevent="handleSubmit" class="p-6 space-y-4">
+              <!-- Name Field -->
+              <div>
+                <label for="name" class="block text-sm font-medium text-neutral-700 mb-1">Name *</label>
+                <input
+                  v-model="contactForm.name"
+                  type="text"
+                  id="name"
+                  required
+                  class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition"
+                  :class="{ 'border-red-500': formErrors.name }"
+                  placeholder="Your name"
+                />
+                <p v-if="formErrors.name" class="mt-1 text-xs text-red-600">{{ formErrors.name }}</p>
+              </div>
+
+              <!-- Email Field -->
+              <div>
+                <label for="email" class="block text-sm font-medium text-neutral-700 mb-1">Email *</label>
+                <input
+                  v-model="contactForm.email"
+                  @input="validateEmailField()"
+                  type="text"
+                  id="email"
+                  class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition"
+                  :class="{ 'border-red-500': formErrors.email }"
+                  placeholder="your.email@example.com"
+                />
+                <p v-if="formErrors.email" class="mt-1 text-xs text-red-600">{{ formErrors.email }}</p>
+              </div>
+
+              <!-- Subject Field -->
+              <div>
+                <label for="subject" class="block text-sm font-medium text-neutral-700 mb-1">Subject *</label>
+                <input
+                  v-model="contactForm.subject"
+                  type="text"
+                  id="subject"
+                  required
+                  class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition"
+                  :class="{ 'border-red-500': formErrors.subject }"
+                  placeholder="What's this about?"
+                />
+                <p v-if="formErrors.subject" class="mt-1 text-xs text-red-600">{{ formErrors.subject }}</p>
+              </div>
+
+              <!-- Message Field -->
+              <div>
+                <label for="message" class="block text-sm font-medium text-neutral-700 mb-1">Message *</label>
+                <textarea
+                  v-model="contactForm.message"
+                  id="message"
+                  required
+                  rows="4"
+                  class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition resize-none"
+                  :class="{ 'border-red-500': formErrors.message }"
+                  placeholder="Your message here..."
+                ></textarea>
+                <p v-if="formErrors.message" class="mt-1 text-xs text-red-600">{{ formErrors.message }}</p>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="pt-1">
+                <button
+                  type="submit"
+                  :disabled="isSubmitting"
+                  class="w-full bg-neutral-900 text-white py-3 rounded-lg font-medium hover:bg-neutral-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                >
+                  <span v-if="!isSubmitting">Send Message</span>
+                  <span v-else>
+                    <svg class="animate-spin h-4 w-4 text-white mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Sending...
+                  </span>
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </transition>

@@ -18,12 +18,12 @@ useHead({
     {
       rel: 'icon',
       type: 'image/png',
-      href: `${baseURL}images/Vispiv.png`
+      href: `${baseURL}images/Logo/Vispiv.png`
     }
   ]
 })
 
-const bgImageUrl = `${baseURL}images/nature.jpg`
+const bgImageUrl = `${baseURL}images/Background/nature.jpg`
 </script>
 
 <template>
