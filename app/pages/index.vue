@@ -624,23 +624,23 @@ const education = [
 const partners = [
   {
     name: 'Giant Malaysia',
-    logo: 'https://i0.wp.com/www.giant.com.my/wp-content/uploads/2021/03/Giant_Malaysia.png?fit=380%2C240&ssl=1'
+    logo: 'images/Logo/giant.png'
   },
   {
     name: 'TF Value Mart',
-    logo: 'https://www.tfvaluemart.com.my/wp-content/uploads/2020/11/logo.svg'
+    logo: 'images/Logo/tfvaluemart.png'
   },
   {
     name: 'Sri Ternak Group',
-    logo: 'https://www.sriternak.com/wp-content/uploads/2023/07/logo-sri-ternak-03.svg'
+    logo: 'images/Logo/sriternak.png'
   },
   {
     name: 'Everrise',
-    logo: 'https://everriseshop.panda-eco.com/everrise/branch_image/logo.png'
+    logo: 'images/Logo/everrise.png'
   },
   {
     name: 'Curtin University',
-    logo: 'https://curtin.edu.my/wp-content/themes/mimas/dist/images/cm-logo.png'
+    logo: 'images/Logo/curtinuniversity.png'
   }
 ]
 
@@ -710,7 +710,7 @@ onUnmounted(() => {
         <div class="relative group">
           <div class="absolute -inset-1 bg-gradient-to-r from-neutral-200 to-neutral-300 rounded-full opacity-50 blur group-hover:opacity-75 transition duration-500"></div>
           <img
-            src="/images/Girl/kotobi.png"
+            src="/images/Girl/aboutme.jpg"
             alt="Vivian Quek"
             class="relative w-32 h-32 rounded-full object-cover shadow-sm ring-4 ring-white"
           />
@@ -1047,10 +1047,18 @@ onUnmounted(() => {
         <div class="slider relative w-full overflow-hidden">
           <div class="slide-track flex gap-12">
             <div v-for="(partner, i) in partners" :key="`a-${i}`" class="cursor-pointer flex-shrink-0 opacity-80 hover:opacity-100 transition-opacity flex items-center">
-              <img :src="partner.logo" class="h-12 w-32 object-contain hover:scale-105 transition-all duration-300" :alt="partner.name" />
+              <img 
+                :src="getImagePath(partner.logo)" 
+                class="h-12 w-32 object-contain hover:scale-105 transition-all duration-300" 
+                :alt="partner.name" 
+              />
             </div>
             <div v-for="(partner, i) in partners" :key="`b-${i}`" class="cursor-pointer flex-shrink-0 opacity-80 hover:opacity-100 transition-opacity flex items-center">
-              <img :src="partner.logo" class="h-12 w-32 object-contain hover:scale-105 transition-all duration-300" :alt="partner.name" />
+              <img 
+                :src="getImagePath(partner.logo)" 
+                class="h-12 w-32 object-contain hover:scale-105 transition-all duration-300" 
+                :alt="partner.name" 
+              />
             </div>
           </div>
           <div class="absolute top-0 left-0 w-12 h-full bg-gradient-to-r from-black-50 to-transparent"></div>
