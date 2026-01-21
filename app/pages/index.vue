@@ -190,7 +190,11 @@ const onLoadedMetadata = () => {
 
 const getImagePath = (imagePath) => {
   if (!imagePath) return ''
-  return isProd ? `/vivianquekjiayi${imagePath}` : imagePath
+  
+  // Ensure the path starts with a slash for consistency
+  const normalizedPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`
+  
+  return isProd ? `/vivianquekjiayi${normalizedPath}` : normalizedPath
 }
 
 const seek = (e) => {
@@ -624,23 +628,23 @@ const education = [
 const partners = [
   {
     name: 'Giant Malaysia',
-    logo: 'images/Logo/giant.png'
+    logo: '/images/Logo/giant.png'
   },
   {
     name: 'TF Value Mart',
-    logo: 'images/Logo/tfvaluemart.png'
+    logo: '/images/Logo/tfvaluemart.png'
   },
   {
     name: 'Sri Ternak Group',
-    logo: 'images/Logo/sriternak.png'
+    logo: '/images/Logo/sriternak.png'
   },
   {
     name: 'Everrise',
-    logo: 'images/Logo/everrise.png'
+    logo: '/images/Logo/everrise.png'
   },
   {
     name: 'Curtin University',
-    logo: 'images/Logo/curtinuniversity.png'
+    logo: '/images/Logo/curtinuniversity.png'
   }
 ]
 
