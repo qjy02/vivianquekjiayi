@@ -188,13 +188,15 @@ const onLoadedMetadata = () => {
   }
 }
 
-const getImagePath = (imagePath) => {
-  if (!imagePath) return ''
-  
-  // Ensure the path starts with a slash for consistency
-  const normalizedPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`
-  
+// Helper function for asset paths
+const getAssetPath = (assetPath) => {
+  if (!assetPath) return ''
+  const normalizedPath = assetPath.startsWith('/') ? assetPath : `/${assetPath}`
   return isProd ? `/vivianquekjiayi${normalizedPath}` : normalizedPath
+}
+
+const getImagePath = (imagePath) => {
+  return getAssetPath(imagePath)
 }
 
 const seek = (e) => {
@@ -666,8 +668,8 @@ const handleDownload = () => {
     
     try {
       const link = document.createElement('a')
-      link.href = '/files/VivianQuekJiaYi_Resume.pdf' // Default file path and name
-      link.download = 'VivianQuekJiaYi_Resume.pdf' // Filename can be changed
+      link.href = getAssetPath('/files/VivianQuekJiaYi_Resume.pdf')
+      link.download = 'VivianQuekJiaYi_Resume.pdf'
       document.body.appendChild(link)
       link.click()
       document.body.removeChild(link)
