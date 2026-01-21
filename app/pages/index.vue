@@ -56,6 +56,15 @@ const isSubmitting = ref(false)
 const isProd = typeof window !== 'undefined' && window.location.hostname === 'qjy02.github.io'
 const baseURL = isProd ? '/vivianquekjiayi/' : '/'
 
+const showClickHint = ref(true)
+
+onMounted(() => {
+  // Hide the hint after 5 seconds
+  setTimeout(() => {
+    showClickHint.value = false
+  }, 5000) // 5000ms = 5 seconds
+})
+
 const playlist = [
   {
     title: '小小空间',
@@ -852,8 +861,14 @@ onUnmounted(() => {
             </span>
             
             <!-- Click me! -->
-            <span class="click-hint bg-blue-500 text-white px-2 py-1 rounded-md text-xs font-medium whitespace-nowrap shadow-md animate-pulse ml-2">
-              👈 Click me!
+            <span 
+              v-if="showClickHint"
+              class="click-hint bg-gradient-to-r from-neutral-200 to-neutral-300 text-neutral-700 px-2 py-1 rounded-md text-xs font-bold whitespace-nowrap shadow-md animate-pulse ml-2 border border-neutral-300 flex items-center gap-1"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              Click me!
             </span>
             
             <!-- External link icon -->
@@ -865,7 +880,7 @@ onUnmounted(() => {
             
             <!-- Tooltip on hover -->
             <span class="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-neutral-800 text-white text-xs px-3 py-1.5 rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-              View my full projects portfolio
+              View my past projects here
               <span class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-neutral-800 rotate-45"></span>
             </span>
           </a>
