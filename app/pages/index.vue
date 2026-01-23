@@ -665,39 +665,48 @@ const education = [
 const partners = [
   {
     name: 'Giant Malaysia',
-    logo: '/images/Logo/giant.png'
+    logo: '/images/Logo/giant.png',
+    link: 'https://www.giant.com.my/'
   },
   {
     name: 'TF Value Mart',
-    logo: '/images/Logo/tfvaluemart.png'
+    logo: '/images/Logo/tfvaluemart.png',
+    link: 'https://www.tfvaluemart.com.my/'
   },
   {
-    name: 'Sri Ternak Group',
-    logo: '/images/Logo/sriternak.png'
+    name: 'Sri Ternak',
+    logo: '/images/Logo/sriternak.png',
+    link: 'https://www.sriternak.com/'
   },
   {
     name: 'Everrise',
-    logo: '/images/Logo/everrise.png'
+    logo: '/images/Logo/everrise.png',
+    link: 'https://everrise.com.my/'
   },
   {
     name: 'Hi-Bliss Hydrogen Therapy',
-    logo: '/images/Logo/hibliss.png'
+    logo: '/images/Logo/hibliss.png',
+    link: 'https://hi-bliss.com/'
   },
   {
     name: 'Gross Synergy',
-    logo: '/images/Logo/grosssynergy.png'
+    logo: '/images/Logo/grosssynergy.png',
+    link: 'https://grosssynergy.com/'
   },
   {
     name: 'Jumbo Grocer',
-    logo: '/images/Logo/jumbogrocer.png'
+    logo: '/images/Logo/jumbogrocer.png',
+    link: 'https://jumbo.my/'
   },
   {
     name: 'Pay Fong High School',
-    logo: '/images/Logo/payfong.png'
+    logo: '/images/Logo/payfong.png',
+    link: 'https://www.payfong.edu.my/'
   },
   {
     name: 'Curtin University',
-    logo: '/images/Logo/curtinuniversity.png'
+    logo: '/images/Logo/curtinuniversity.png',
+    link: 'https://curtin.edu.my/'
   }
 ]
 
@@ -1111,19 +1120,36 @@ onUnmounted(() => {
         
         <div class="slider relative w-full overflow-hidden">
           <div class="slide-track flex gap-12">
+            <!-- First set of partners -->
             <div v-for="(partner, i) in partners" :key="`a-${i}`" class="cursor-pointer flex-shrink-0 opacity-80 hover:opacity-100 transition-opacity flex items-center">
-              <img 
-                :src="getImagePath(partner.logo)" 
-                class="h-12 w-32 object-contain hover:scale-105 transition-all duration-300" 
-                :alt="partner.name" 
-              />
+              <a 
+                :href="partner.link" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="flex items-center"
+              >
+                <img 
+                  :src="getImagePath(partner.logo)" 
+                  class="h-12 w-32 object-contain hover:scale-105 transition-all duration-300" 
+                  :alt="partner.name" 
+                />
+              </a>
             </div>
+            
+            <!-- Second set of partners (for seamless loop) -->
             <div v-for="(partner, i) in partners" :key="`b-${i}`" class="cursor-pointer flex-shrink-0 opacity-80 hover:opacity-100 transition-opacity flex items-center">
-              <img 
-                :src="getImagePath(partner.logo)" 
-                class="h-12 w-32 object-contain hover:scale-105 transition-all duration-300" 
-                :alt="partner.name" 
-              />
+              <a 
+                :href="partner.link" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="flex items-center"
+              >
+                <img 
+                  :src="getImagePath(partner.logo)" 
+                  class="h-12 w-32 object-contain hover:scale-105 transition-all duration-300" 
+                  :alt="partner.name" 
+                />
+              </a>
             </div>
           </div>
           <div class="absolute top-0 left-0 w-12 h-full bg-gradient-to-r from-black-50 to-transparent"></div>
