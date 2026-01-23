@@ -69,6 +69,12 @@ const playlist = [
   {
     title: '小小空间',
     artist: '夕野ことび',
+    src: `${baseURL}music/smallworld.mp3`,
+    color: 'from-blue-500 to-cyan-600'
+  },
+  {
+    title: '小小空间',
+    artist: '夕野ことび',
     src: `${baseURL}music/littlespace.mp3`,
     color: 'from-indigo-500 to-purple-600'
   },
@@ -739,7 +745,7 @@ onUnmounted(() => {
           Software Engineer
         </p>
 
-        <div class="mt-8 max-w-lg space-y-4 text-neutral-600 leading-relaxed text-center">
+        <div class="mt-8 max-w-lg space-y-4 text-black leading-relaxed text-center">
           <p>
             Hi! I am a full-stack web developer with a little over a year of experience, from building simple websites to complete retail systems. I enjoy learning new things and exploring how technology can make life more enjoyable.
           </p>
@@ -757,7 +763,7 @@ onUnmounted(() => {
         </button>
 
         <!-- Link Section -->
-        <div class="mt-10 flex justify-center gap-8 text-sm font-medium text-neutral-500">
+        <div class="mt-10 flex justify-center gap-8 text-sm font-medium text-black">
           <a 
             v-for="link in socialLinks" 
             :key="link.name"
@@ -765,7 +771,7 @@ onUnmounted(() => {
             :target="link.type === 'email' ? '_self' : '_blank'"
             :rel="link.type === 'email' ? '' : 'noopener noreferrer'"
             @click="link.type === 'email' ? openContactForm($event) : null"
-            class="group flex items-center gap-2 hover:text-neutral-900 transition-colors cursor-pointer"
+            class="group flex items-center gap-2 hover:text-black transition-colors cursor-pointer"
           >
             <span v-html="link.icon" class="icon-container"></span>
             <span class="underline-offset-4 group-hover:underline">{{ link.name }}</span>
@@ -777,7 +783,7 @@ onUnmounted(() => {
 
       <!-- Skills Section -->
       <section>
-        <h2 class="text-lg font-semibold text-neutral-800 mb-6 flex items-center gap-2">
+        <h2 class="text-lg font-semibold text-black mb-6 flex items-center gap-2">
           <svg xmlns="http://www.w3.org/2000/svg" 
               class="w-4 h-4 text-neutral-400 mt-0.5" 
               fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -789,12 +795,12 @@ onUnmounted(() => {
         <!-- Skills by Category (Expanded View) -->
         <div v-if="skillsExpanded" class="space-y-6">
           <div v-for="category in skills" :key="category.category" class="space-y-3">
-            <h3 class="text-sm font-medium text-neutral-500">{{ category.category }}</h3>
+            <h3 class="text-sm font-medium text-black">{{ category.category }}</h3>
             <div class="flex flex-wrap gap-2">
               <span 
                 v-for="skill in category.items" 
                 :key="skill"
-                class="px-4 py-2 cursor-pointer bg-white border border-neutral-100 rounded-xl text-sm text-neutral-600 shadow-sm hover:border-neutral-300 transition-colors"
+                class="px-4 py-2 cursor-pointer bg-gradient-to-r from-neutral-200 to-neutral-300 text-black rounded-md text-sm shadow-md border border-neutral-300 hover:border-neutral-400 transition-all duration-200"
               >
                 {{ skill }}
               </span>
@@ -807,11 +813,11 @@ onUnmounted(() => {
           <span 
             v-for="skill in visibleSkills" 
             :key="skill"
-            class="px-4 py-2 cursor-pointer bg-white border border-neutral-100 rounded-xl text-sm text-neutral-600 shadow-sm hover:border-neutral-300 transition-colors"
+            class="px-4 py-2 cursor-pointer bg-gradient-to-r from-neutral-200 to-neutral-300 text-black rounded-md text-sm shadow-md border border-neutral-300 hover:border-neutral-400 transition-all duration-200"
           >
             {{ skill }}
           </span>
-          <span v-if="!skillsExpanded" class="text-sm text-neutral-400 px-4 py-2">
+          <span v-if="!skillsExpanded" class="text-sm text-black px-4 py-2">
             +{{ skills.flatMap(c => c.items).length - initialVisibleSkills }} more
           </span>
         </div>
@@ -819,7 +825,7 @@ onUnmounted(() => {
         <!-- Expand/Collapse Button -->
         <button 
           @click="skillsExpanded = !skillsExpanded"
-          class="mt-6 flex items-center gap-2 text-sm text-neutral-500 hover:text-neutral-700 transition-colors group"
+          class="mt-6 flex items-center gap-2 text-sm text-black hover:text-neutral-800 transition-colors group"
         >
           <span>{{ skillsExpanded ? 'Show less' : 'Show all skills' }}</span>
           <svg 
@@ -910,13 +916,13 @@ onUnmounted(() => {
               <div class="flex justify-between items-start gap-4 mb-4">
                 <div class="min-w-0 flex-1">
                   <!-- Title -->
-                  <h3 class="font-medium text-neutral-900 group-hover:text-neutral-800 
+                  <h3 class="font-medium text-black group-hover:text-neutral-800 
                             transition-colors duration-300 text-base tracking-tight mb-3">
                     {{ project.title }}
                   </h3>
                   
                   <!-- Description with visible text -->
-                  <p class="text-sm text-neutral-700 leading-relaxed mt-3 
+                  <p class="text-sm  text-black leading-relaxed mt-3 
                           border-l border-neutral-300/50 group-hover:border-neutral-400/60 
                           transition-colors duration-300 pl-4">
                     {{ project.desc }}
@@ -975,7 +981,7 @@ onUnmounted(() => {
 
       <!-- Work Experience Section -->
       <section class="mt-16">
-        <h2 class="text-lg font-semibold text-neutral-800 mb-6 flex items-center gap-2">
+        <h2 class="text-lg font-semibold text-black mb-6 flex items-center gap-2">
           <span class="text-neutral-400 flex items-center justify-center h-5 w-5 mt-0.5">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -992,17 +998,17 @@ onUnmounted(() => {
               </svg>
             </span>
             <span class="text-xs font-semibold tracking-wide text-neutral-400 uppercase">{{ exp.year }}</span>
-            <h3 class="mt-1 text-base font-medium text-neutral-800">{{ exp.role }}</h3>
+            <h3 class="mt-1 text-base font-medium text-black">{{ exp.role }}</h3>
             <span class="text-sm text-neutral-500">{{ exp.company }}</span>
             
             <div class="mt-2">
-              <div class="text-sm text-neutral-600">
+              <div class="text-sm text-black">
                 <p v-if="!experiencesStates[index]" class="leading-relaxed mb-2">
                   {{ exp.desc }}
                 </p>
                 
                 <ul v-if="experiencesStates[index]" class="space-y-1.5 list-disc pl-4">
-                  <li v-for="(point, pointIndex) in exp.points" :key="pointIndex" class="leading-relaxed">
+                  <li v-for="(point, pointIndex) in exp.points" :key="pointIndex" class="leading-relaxed text-black">
                     {{ point }}
                   </li>
                 </ul>
@@ -1031,7 +1037,7 @@ onUnmounted(() => {
 
       <!-- Education Section -->
       <section class="mt-16">
-        <h2 class="text-lg font-semibold text-neutral-800 mb-6 flex items-center gap-2">
+        <h2 class="text-lg font-semibold text-black mb-6 flex items-center gap-2">
           <span class="text-neutral-400 flex items-center justify-center mt-0.5">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
@@ -1045,15 +1051,15 @@ onUnmounted(() => {
           <div v-for="(edu, index) in education" :key="index" class="ml-8 relative">
             <span class="absolute -left-[44px] top-0 flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-b from-white/90 via-white/87 to-white/85 shadow-sm ring-2 ring-neutral-100">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
               </svg>
             </span>
             
             <span class="text-xs font-semibold tracking-wide text-neutral-400 uppercase">{{ edu.year }}</span>
-            <h3 class="mt-1 text-base font-medium text-neutral-800">{{ edu.role }}</h3>
+            <h3 class="mt-1 text-base font-medium text-black">{{ edu.role }}</h3>
             <span class="text-sm text-neutral-500">{{ edu.company }}</span>
             
-            <p v-if="edu.desc" class="mt-2 text-sm text-neutral-600 leading-relaxed max-w-md">
+            <p v-if="edu.desc" class="mt-2 text-sm text-black leading-relaxed max-w-md">
               {{ edu.desc }}
             </p>
           </div>
