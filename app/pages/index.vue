@@ -680,6 +680,22 @@ const partners = [
     logo: '/images/Logo/everrise.png'
   },
   {
+    name: 'Hi-Bliss Hydrogen Therapy',
+    logo: '/images/Logo/hibliss.png'
+  },
+  {
+    name: 'Gross Synergy',
+    logo: '/images/Logo/grosssynergy.png'
+  },
+  {
+    name: 'Jumbo Grocer',
+    logo: '/images/Logo/jumbogrocer.png'
+  },
+  {
+    name: 'Pay Fong High School',
+    logo: '/images/Logo/payfong.png'
+  },
+  {
     name: 'Curtin University',
     logo: '/images/Logo/curtinuniversity.png'
   }
@@ -1271,8 +1287,8 @@ onUnmounted(() => {
                   </svg>
                 </button>
 
-                <button @click="toggleMusic" class="text-white hover:text-neutral-300 transition-colors flex-shrink-0">
-                  <svg v-if="isPlaying" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <button @click="toggleMusic" class="text-white hover:text-neutral-300 transition-colors font-bold flex-shrink-0">
+                  <svg v-if="isPlaying" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 font-bold" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
                   </svg>
                   <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
