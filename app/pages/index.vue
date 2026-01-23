@@ -68,8 +68,8 @@ onMounted(() => {
 
 const playlist = [
   {
-    title: '小小空间',
-    artist: '夕野ことび',
+    title: '小さな世界',
+    artist: 'SHIZE/夕野ことび',
     src: `${baseURL}music/smallworld.mp3`,
     color: 'from-blue-500 to-cyan-600'
   },
@@ -545,7 +545,7 @@ const projects = [
     title: 'Personal Portfolio Website',
     desc: 'A corner to share a little about myself',
     tags: ['Vue', 'Vite', 'HTML', 'Tailwind CSS', 'Nuxt.js', 'JavaScript'],
-    link: 'https://qjy02.github.io/vivianquekjiayi/',
+    link: 'https://github.com/qjy02/vivianquekjiayi/',
     image: '/images/Girl/Girl_Code.png'
   },
   {
@@ -1119,10 +1119,10 @@ onUnmounted(() => {
 
       <!-- Footer Section -->
       <footer class="mt-8 text-center border-t border-neutral-300 pt-6">
-        <p class="text-xs text-black-300">
+        <p class="text-xs text-black font-bold">
           © Vispiv Collectives / Kotobi Corner 2026
         </p>
-        <p class="text-xs text-black-300 mt-1">
+        <p class="text-xs text-black mt-1">
           Crafted with Vue & Nuxt JS <span class="text-red-300">♥</span>
         </p>
       </footer>
