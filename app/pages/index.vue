@@ -777,7 +777,7 @@ onUnmounted(() => {
         </button>
 
         <!-- Link Section -->
-        <div class="mt-10 flex justify-center gap-8 text-sm font-medium text-black">
+        <div class="mt-10 grid grid-cols-2 sm:flex sm:justify-center sm:gap-8 text-sm font-medium text-black gap-4">
           <a 
             v-for="link in socialLinks" 
             :key="link.name"
@@ -785,7 +785,7 @@ onUnmounted(() => {
             :target="link.type === 'email' ? '_self' : '_blank'"
             :rel="link.type === 'email' ? '' : 'noopener noreferrer'"
             @click="link.type === 'email' ? openContactForm($event) : null"
-            class="group flex items-center gap-2 hover:text-black transition-colors cursor-pointer"
+            class="group flex items-center justify-center gap-2 hover:text-black transition-colors cursor-pointer"
           >
             <span v-html="link.icon" class="icon-container"></span>
             <span class="underline-offset-4 group-hover:underline">{{ link.name }}</span>
