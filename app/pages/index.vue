@@ -35,6 +35,7 @@ const skillsExpanded = ref(false)
 const experiencesStates = ref({})
 const musicPlayerExpanded = ref(false)
 const isToggling = ref(false)
+const isDarkMode = ref(false)
 
 // --- Music State Management ---
 const audioRef = ref(null)
@@ -460,11 +461,11 @@ const socialLinks = [
     url: 'https://orcid.org/0009-0005-2688-1007',
     icon: `
       <svg class="w-5 h-5 fill-current group-hover:text-[#a6ce39] transition-colors" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
-        <path d="M256,128c0,70.7-57.3,128-128,128C57.3,256,0,198.7,0,128C0,57.3,57.3,0,128,0C198.7,0,256,57.3,256,128z"/>
-        <path fill="#fff" d="M86.3,186.2H70.9V79.1h15.4v48.4V186.2z"/>
-        <path fill="#fff" d="M108.9,79.1h41.6c39.6,0,57,28.3,57,53.6c0,27.5-21.5,53.6-56.8,53.6h-41.8V79.1z M124.3,172.4h24.5
+        <path d="M256,128c0,70.7-57.3,128-128,128C57.3,256,0,198.7,0,128C0,57.3,57.3,0,128,0C198.7,0,256,57.3,256,128z" class="text-[#a6ce39] dark:text-[#a6ce39]"/>
+        <path fill="currentColor" d="M86.3,186.2H70.9V79.1h15.4v48.4V186.2z"/>
+        <path fill="currentColor" d="M108.9,79.1h41.6c39.6,0,57,28.3,57,53.6c0,27.5-21.5,53.6-56.8,53.6h-41.8V79.1z M124.3,172.4h24.5
           c34.9,0,42.9-26.5,42.9-39.7c0-25.5-13.7-39.7-43.7-39.7h-23.7V172.4z"/>
-        <path fill="#fff" d="M88.7,56.8c0,5.5-4.5,10.1-10.1,10.1c-5.6,0-10.1-4.6-10.1-10.1c0-5.6,4.5-10.1,10.1-10.1
+        <path fill="currentColor" d="M88.7,56.8c0,5.5-4.5,10.1-10.1,10.1c-5.6,0-10.1-4.6-10.1-10.1c0-5.6,4.5-10.1,10.1-10.1
           C84.2,46.7,88.7,51.3,88.7,56.8z"/>
       </svg>
     `
@@ -731,7 +732,10 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="relative min-h-screen text-neutral-800 selection:bg-neutral-200"> 
+  <div 
+    class="relative min-h-screen text-neutral-800 selection:bg-neutral-200"
+    :class="{ 'dark-mode': isDarkMode }" 
+  > 
     <transition name="fade">
       <div v-if="isDownloading" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white/90 backdrop-blur-sm">
         <div class="w-16 h-16 border-4 border-neutral-200 border-t-neutral-800 rounded-full animate-spin"></div>
@@ -1155,23 +1159,65 @@ onUnmounted(() => {
         </button>
       </transition>
 
-      <!-- Music Player Button -->
-      <div class="fixed top-4 right-4 z-50">
-        <transition name="fade">
+      <!-- Music Player Button & Dark Mode Switch -->
+      <div class="fixed top-4 right-4 z-50 flex items-center gap-3">
+        <!-- Dark Mode Switch -->
         <button
-          v-if="!musicPlayerExpanded"
-          @click="toggleMusicPlayer"
-          :class="{'sink-down': isToggling}"
+          @click="isDarkMode = !isDarkMode"
           class="flex items-center justify-center
                 px-5 py-1 rounded-full
                 bg-transparent text-black
                 transition-all duration-150"
+          aria-label="Toggle dark mode"
+          title="Toggle dark mode"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z" />
+          <svg 
+            v-if="!isDarkMode" 
+            xmlns="http://www.w3.org/2000/svg" 
+            class="h-4 w-4" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+          <svg 
+            v-else 
+            xmlns="http://www.w3.org/2000/svg" 
+            class="h-4 w-4" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
           </svg>
         </button>
-      </transition>
+
+        <!-- Music Player Button -->
+        <transition name="fade">
+          <button
+            v-if="!musicPlayerExpanded"
+            @click="toggleMusicPlayer"
+            :class="{'sink-down': isToggling}"
+            class="flex items-center justify-center
+                  px-5 py-1 rounded-full
+                  bg-transparent text-black
+                  transition-all duration-150"
+            aria-label="Toggle music player"
+            title="Toggle music player"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" 
+                class="h-4 w-4" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                    d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z" />
+            </svg>
+          </button>
+        </transition>
       </div>
 
       <!-- Music Player Section -->

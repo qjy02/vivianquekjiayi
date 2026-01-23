@@ -197,3 +197,118 @@ button, a {
     transform: translateY(0);
   }
 }
+
+/* Dark Mode */
+.dark-mode {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 25%, #0f0f0f 50%, #1a1a1a 75%, #0a0a0a 100%) !important;
+  color: #f5f5f5 !important;
+}
+
+.dark-mode .text-black,
+.dark-mode .text-neutral-800,
+.dark-mode .text-neutral-900 {
+  color: #f5f5f5 !important;
+}
+
+.dark-mode .text-neutral-500,
+.dark-mode .text-neutral-600 {
+  color: #a3a3a3 !important;
+}
+
+.dark-mode .bg-white {
+  background: #1a1a1a !important;
+}
+
+.dark-mode .bg-neutral-900 {
+  background: #262626 !important;
+}
+
+.dark-mode .border-neutral-200,
+.dark-mode .border-neutral-300 {
+  border-color: #404040 !important;
+}
+
+.dark-mode .bg-gradient-to-r.from-neutral-200.to-neutral-300 {
+  background: linear-gradient(to right, #404040, #525252) !important;
+}
+
+.dark-mode .hover\\:bg-neutral-700:hover {
+  background: #404040 !important;
+}
+
+/* Specific section adjustments */
+.dark-mode section,
+.dark-mode main {
+  background: transparent !important;
+}
+
+.dark-mode hr {
+  border-color: #404040 !important;
+}
+
+/* Project cards */
+.dark-mode .group:hover .border-neutral-300 {
+  border-color: #525252 !important;
+}
+
+/* Skills tags */
+.dark-mode .bg-gradient-to-r.from-neutral-200.to-neutral-300 {
+  background: linear-gradient(to right, #262626, #363636) !important;
+  color: #d4d4d4 !important;
+  border-color: #404040 !important;
+}
+
+/* Project tags in dark mode */
+.dark-mode .text-sky-700\/80 {
+  color: rgba(186, 230, 253, 0.9) !important; /* Light blue for dark mode */
+}
+
+.dark-mode .bg-sky-50\/60 {
+  background-color: rgba(30, 58, 138, 0.3) !important; /* Dark blue background */
+}
+
+.dark-mode .border-sky-200\/50 {
+  border-color: rgba(56, 189, 248, 0.4) !important;
+}
+
+.dark-mode .group:hover .border-sky-300\/70 {
+  border-color: rgba(56, 189, 248, 0.6) !important;
+}
+
+.dark-mode .hover\:bg-sky-100\/80:hover {
+  background-color: rgba(30, 58, 138, 0.5) !important;
+}
+
+.dark-mode .hover\:text-sky-800:hover {
+  color: rgba(186, 230, 253, 1) !important;
+}
+
+.dark-mode .hover\:shadow-sky-200\/30:hover {
+  box-shadow: 0 1px 3px 0 rgba(56, 189, 248, 0.2) !important;
+}
+
+/* Project link button in dark mode */
+.dark-mode .text-neutral-500 {
+  color: #a3a3a3 !important; /* neutral-400 */
+}
+
+.dark-mode .hover\:text-rose-600:hover {
+  color: #fda4af !important; /* rose-300 for dark mode */
+}
+
+.dark-mode .hover\:bg-rose-50\/50:hover {
+  background-color: rgba(190, 18, 60, 0.2) !important; /* rose-900 with opacity */
+}
+
+.dark-mode svg {
+  stroke: currentColor !important;
+}
+
+/* Project card link button hover in dark mode */
+.dark-mode .group\/link:hover .text-neutral-500 {
+  color: #fda4af !important; /* rose-300 */
+}
+
+.dark-mode .group\/link:hover svg {
+  stroke: #fda4af !important; /* rose-300 */
+}
