@@ -71,18 +71,21 @@ const playlist = [
     title: '小さな世界',
     artist: 'SHIZE/夕野ことび',
     src: `${baseURL}music/smallworld.mp3`,
+    link: 'https://suno.com/s/jIVFSwQPr0oRF5f2',
     color: 'from-blue-500 to-cyan-600'
   },
   {
     title: '小小空间',
     artist: '夕野ことび',
     src: `${baseURL}music/littlespace.mp3`,
+    link: 'https://suno.com/s/jP79bdv9jDnOxagw',
     color: 'from-indigo-500 to-purple-600'
   },
   {
     title: '微光角落',
     artist: '夕野ことび',
     src: `${baseURL}music/shiningcorner.mp3`,
+    link: 'https://suno.com/s/ri1BKtFwR07R0Cyy',
     color: 'from-emerald-500 to-teal-600'
   }
 ]
@@ -1251,10 +1254,12 @@ onUnmounted(() => {
                 </div>
               </div>
               
-              <div class="flex flex-col overflow-hidden min-w-0">
-                <span class="text-xs font-semibold truncate">{{ currentTrack.title }}</span>
-                <span class="text-[10px] text-neutral-400 truncate">{{ currentTrack.artist }}</span>
-              </div>
+              <a :href="currentTrack.link" target="_blank" class="hover:opacity-80 transition-opacity">
+                <div class="flex flex-col overflow-hidden min-w-0">
+                  <span class="text-xs font-semibold truncate">{{ currentTrack.title }}</span>
+                  <span class="text-[10px] text-neutral-400 truncate">{{ currentTrack.artist }}</span>
+                </div>
+              </a>
             </div>
 
             <!-- Controls -->
