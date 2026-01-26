@@ -592,6 +592,17 @@ const projects = [
 // --- Data: Work Experience ---
 const workExperiences = [
   {
+    year: 'Dec 2025 - Present',
+    role: 'Freelance Web Designer (Part Time)',
+    company: 'Self-Employed',
+    points: [
+      'Build responsive personal and business webpages for clients using HTML/Tailwind CSS, JavaScript, and modern frameworks',
+      'Work directly with clients to deliver clean, functional webpages that meet their specific requirements'
+    ],
+    desc: 'Creating custom websites for personal and small business clients',
+    showMore: false
+  },
+  {
     year: 'Mar 2024 - Dec 2025',
     role: 'Software Engineer (Backend)',
     company: 'Panda Software House Sdn. Bhd. (Melaka, Malaysia)',
