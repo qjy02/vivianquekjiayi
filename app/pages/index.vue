@@ -36,6 +36,7 @@ const experiencesStates = ref({})
 const musicPlayerExpanded = ref(false)
 const isToggling = ref(false)
 const isDarkMode = ref(false)
+const showMenu = ref(false)
 
 // --- Music State Management ---
 const audioRef = ref(null)
@@ -710,7 +711,36 @@ const partners = [
   }
 ]
 
+// Section Management
+const sections = [
+  { id: 'header', name: 'About Me'},
+  { id: 'skills', name: 'Skills'},
+  { id: 'projects', name: 'Projects'},
+  { id: 'work', name: 'Work Experience'},
+  { id: 'education', name: 'Education'},
+  { id: 'partners', name: 'Partners'},
+  { id: 'footer', name: 'Footer'}
+]
+
 // --- Actions ---
+
+// Toggle Menu
+const toggleMenu = () => {
+  showMenu.value = !showMenu.value
+}
+
+const scrollToSection = (sectionId) => {
+  showMenu.value = false
+  const element = document.getElementById(sectionId)
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' })
+  } else {
+    // Fallback to scrolling to top for header
+    if (sectionId === 'header') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+}
 
 // 1. Expand/Collapse Experience Points
 const toggleExperiencePoints = (expIndex) => {
@@ -752,10 +782,18 @@ const scrollToTop = () => {
 // 4. Lifecycle Hooks for Scroll Listener
 onMounted(() => {
   window.addEventListener('scroll', checkScroll)
+  
+  // Add click outside listener for menu
+  document.addEventListener('click', (e) => {
+    if (showMenu.value && !e.target.closest('.fixed.top-4.right-4') && !e.target.closest('.fixed.top-16.right-4')) {
+      showMenu.value = false
+    }
+  })
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', checkScroll)
+  document.removeEventListener('click', () => {})
 })
 </script>
 
@@ -774,7 +812,7 @@ onUnmounted(() => {
     <!-- Main Section-->
     <main class="max-w-2xl mx-auto px-6 py-16 relative">
       <!-- Header Section-->
-      <header class="flex flex-col items-center text-center">
+      <header id="header" class="flex flex-col items-center text-center">
         <div class="relative group">
           <div class="absolute -inset-1 bg-gradient-to-r from-neutral-200 to-neutral-300 rounded-full opacity-50 blur group-hover:opacity-75 transition duration-500"></div>
             <img
@@ -828,7 +866,7 @@ onUnmounted(() => {
       <hr class="my-8 border-neutral-300" />
 
       <!-- Skills Section -->
-      <section>
+      <section id="skills">
         <h2 class="text-lg font-semibold text-black mb-6 flex items-center gap-2">
           <svg xmlns="http://www.w3.org/2000/svg" 
               class="w-4 h-4 text-neutral-400 mt-0.5" 
@@ -888,7 +926,7 @@ onUnmounted(() => {
       </section>
 
       <!-- Projects Section -->
-      <section class="mt-16">
+      <section id="projects" class="mt-16">
         <h2 class="text-lg font-semibold text-neutral-800 mb-6">
           <a 
             href="https://drive.google.com/file/d/1-2k7SymIHcGMZ-tdoc6SUE1eLNNCMSpH/view?usp=sharing" 
@@ -1026,7 +1064,7 @@ onUnmounted(() => {
       </section>
 
       <!-- Work Experience Section -->
-      <section class="mt-16">
+      <section id="work" class="mt-16">
         <h2 class="text-lg font-semibold text-black mb-6 flex items-center gap-2">
           <span class="text-neutral-400 flex items-center justify-center h-5 w-5 mt-0.5">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1082,7 +1120,7 @@ onUnmounted(() => {
       </section>
 
       <!-- Education Section -->
-      <section class="mt-16">
+      <section id="education" class="mt-16">
         <h2 class="text-lg font-semibold text-black mb-6 flex items-center gap-2">
           <span class="text-neutral-400 flex items-center justify-center mt-0.5">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1113,7 +1151,7 @@ onUnmounted(() => {
       </section>
 
       <!-- Contribution Partner Section -->
-      <section class="mt-16 overflow-hidden">
+      <section id="partners" class="mt-16 overflow-hidden">
         <h2 class="text-center text-base font-semibold tracking-wide text-black-800 mb-6">
           Companies & Brands I've Worked With
         </h2>
@@ -1163,7 +1201,7 @@ onUnmounted(() => {
       </section>
 
       <!-- Footer Section -->
-      <footer class="mt-8 text-center border-t border-neutral-300 pt-6">
+      <footer id="footer" class="mt-8 text-center border-t border-neutral-300 pt-6">
         <p class="text-xs text-black font-bold">
           © Vispiv Collectives / Kotobi Corner 2026
         </p>
@@ -1204,15 +1242,16 @@ onUnmounted(() => {
         </button>
       </transition>
 
-      <!-- Music Player Button & Dark Mode Switch -->
+      <!-- MENU SECTION -->
       <div class="fixed top-4 right-4 z-50 flex items-center gap-3">
-        <!-- Dark Mode Switch -->
+        <!-- Dark Mode Switch Section -->
         <button
           @click="isDarkMode = !isDarkMode"
           class="flex items-center justify-center
                 px-5 py-1 rounded-full
                 bg-transparent text-black
-                transition-all duration-150"
+                transition-all duration-150
+                hover:bg-neutral-100"
           aria-label="Toggle dark mode"
           title="Toggle dark mode"
         >
@@ -1240,7 +1279,7 @@ onUnmounted(() => {
           </svg>
         </button>
 
-        <!-- Music Player Button -->
+        <!-- Music Player Button Section -->
         <transition name="fade">
           <button
             v-if="!musicPlayerExpanded"
@@ -1249,7 +1288,8 @@ onUnmounted(() => {
             class="flex items-center justify-center
                   px-5 py-1 rounded-full
                   bg-transparent text-black
-                  transition-all duration-150"
+                  transition-all duration-150
+                  hover:bg-neutral-100"
             aria-label="Toggle music player"
             title="Toggle music player"
           >
@@ -1263,7 +1303,48 @@ onUnmounted(() => {
             </svg>
           </button>
         </transition>
+
+        <!-- Vertical Menu Toggle Section -->
+        <button
+          @click="toggleMenu"
+          class="flex items-center justify-center
+                px-5 py-1 rounded-full
+                bg-transparent text-black
+                transition-all duration-150
+                hover:bg-neutral-100"
+          aria-label="Toggle menu"
+          title="Toggle menu"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" 
+              class="h-4 w-4" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                  d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
       </div>
+
+      <!-- Vertical Menu Bar -->
+      <transition name="slide-fade">
+        <div 
+          v-if="showMenu"
+          class="fixed top-16 right-4 z-50 bg-white/95 backdrop-blur-md rounded-lg shadow-xl border border-neutral-200 py-2 min-w-[180px]"
+          @click.stop
+        >
+          <div class="flex flex-col">
+            <div 
+              v-for="section in sections" 
+              :key="section.id"
+              @click="scrollToSection(section.id)"
+              class="px-4 py-3 flex items-center justify-center gap-3 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 cursor-pointer transition-colors"
+            >
+              <span class="font-medium">{{ section.name }}</span>
+            </div>
+          </div>
+        </div>
+      </transition>
 
       <!-- Music Player Section -->
       <transition name="music-player">

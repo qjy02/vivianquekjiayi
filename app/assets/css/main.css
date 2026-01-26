@@ -260,11 +260,11 @@ button, a {
 
 /* Project tags in dark mode */
 .dark-mode .text-sky-700\/80 {
-  color: rgba(186, 230, 253, 0.9) !important; /* Light blue for dark mode */
+  color: rgba(186, 230, 253, 0.9) !important;
 }
 
 .dark-mode .bg-sky-50\/60 {
-  background-color: rgba(30, 58, 138, 0.3) !important; /* Dark blue background */
+  background-color: rgba(30, 58, 138, 0.3) !important;
 }
 
 .dark-mode .border-sky-200\/50 {
@@ -289,15 +289,15 @@ button, a {
 
 /* Project link button in dark mode */
 .dark-mode .text-neutral-500 {
-  color: #a3a3a3 !important; /* neutral-400 */
+  color: #a3a3a3 !important;
 }
 
 .dark-mode .hover\:text-rose-600:hover {
-  color: #fda4af !important; /* rose-300 for dark mode */
+  color: #fda4af !important;
 }
 
 .dark-mode .hover\:bg-rose-50\/50:hover {
-  background-color: rgba(190, 18, 60, 0.2) !important; /* rose-900 with opacity */
+  background-color: rgba(190, 18, 60, 0.2) !important;
 }
 
 .dark-mode svg {
@@ -306,9 +306,95 @@ button, a {
 
 /* Project card link button hover in dark mode */
 .dark-mode .group\/link:hover .text-neutral-500 {
-  color: #fda4af !important; /* rose-300 */
+  color: #fda4af !important;
 }
 
 .dark-mode .group\/link:hover svg {
-  stroke: #fda4af !important; /* rose-300 */
+  stroke: #fda4af !important;
+}
+
+/* Slide-fade transition */
+
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateY(-10px);
+  opacity: 0;
+}
+
+/* Light Blue Themed Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: linear-gradient(to bottom, rgba(240, 248, 255, 0.9), rgba(230, 240, 250, 0.9));
+  border-radius: 6px;
+  border: 1px solid rgba(200, 220, 240, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #a8d0ff, #7bb8ff);
+  border-radius: 6px;
+  border: 2px solid rgba(240, 248, 255, 0.8);
+  box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #7bb8ff, #4d9fff);
+  box-shadow: inset 0 0 4px rgba(255, 255, 255, 0.7);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(to bottom, #4d9fff, #1a7fff);
+}
+
+::-webkit-scrollbar-corner {
+  background: rgba(240, 248, 255, 0.9);
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #7bb8ff rgba(240, 248, 255, 0.9);
+}
+
+/* For Internet Explorer/Edge */
+body {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+/* Dark mode scrollbar */
+.dark-mode ::-webkit-scrollbar-track {
+  background: linear-gradient(to bottom, rgba(30, 40, 60, 0.9), rgba(20, 30, 50, 0.9));
+  border: 1px solid rgba(50, 65, 90, 0.5);
+}
+
+.dark-mode ::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #3b82f6, #1d4ed8);
+  border: 2px solid rgba(30, 40, 60, 0.8);
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #1d4ed8, #1e40af);
+}
+
+.dark-mode ::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(to bottom, #1e40af, #1e3a8a);
+}
+
+.dark-mode ::-webkit-scrollbar-corner {
+  background: rgba(30, 40, 60, 0.9);
+}
+
+.dark-mode * {
+  scrollbar-color: #3b82f6 rgba(30, 40, 60, 0.9);
 }
