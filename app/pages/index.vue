@@ -471,8 +471,8 @@ const socialLinks = [
     name: 'GitHub',
     url: 'https://github.com/qjy02',
     icon: `
-      <svg class="w-5 h-5 fill-current group-hover:text-black transition-colors" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+      <svg class="w-5 h-5 group-hover:text-purple-700 dark:group-hover:text-purple-500 transition-colors" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
       </svg>
     `
   },
@@ -480,8 +480,8 @@ const socialLinks = [
     name: 'LinkedIn',
     url: 'https://www.linkedin.com/in/vivian-quek-jia-yi-5645b0185/',
     icon: `
-      <svg class="w-5 h-5 fill-current group-hover:text-[#0077b5] transition-colors" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+      <svg class="w-5 h-5 group-hover:text-[#0077b5] dark:group-hover:text-[#0077b5] transition-colors" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
       </svg>
     `
   },
@@ -489,12 +489,14 @@ const socialLinks = [
     name: 'ORCID',
     url: 'https://orcid.org/0009-0005-2688-1007',
     icon: `
-      <svg class="w-5 h-5 fill-current group-hover:text-[#a6ce39] transition-colors" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
-        <path d="M256,128c0,70.7-57.3,128-128,128C57.3,256,0,198.7,0,128C0,57.3,57.3,0,128,0C198.7,0,256,57.3,256,128z" class="text-[#a6ce39] dark:text-[#a6ce39]"/>
-        <path fill="currentColor" d="M86.3,186.2H70.9V79.1h15.4v48.4V186.2z"/>
-        <path fill="currentColor" d="M108.9,79.1h41.6c39.6,0,57,28.3,57,53.6c0,27.5-21.5,53.6-56.8,53.6h-41.8V79.1z M124.3,172.4h24.5
+      <svg class="w-5 h-5 transition-colors" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+
+        <path fill="#a6ce39" d="M256,128c0,70.7-57.3,128-128,128C57.3,256,0,198.7,0,128C0,57.3,57.3,0,128,0C198.7,0,256,57.3,256,128z"/>
+        
+        <path class="text-black dark:text-white group-hover:text-black dark:group-hover:text-white" fill="currentColor" d="M86.3,186.2H70.9V79.1h15.4v48.4V186.2z"/>
+        <path class="text-black dark:text-white group-hover:text-black dark:group-hover:text-white" fill="currentColor" d="M108.9,79.1h41.6c39.6,0,57,28.3,57,53.6c0,27.5-21.5,53.6-56.8,53.6h-41.8V79.1z M124.3,172.4h24.5
           c34.9,0,42.9-26.5,42.9-39.7c0-25.5-13.7-39.7-43.7-39.7h-23.7V172.4z"/>
-        <path fill="currentColor" d="M88.7,56.8c0,5.5-4.5,10.1-10.1,10.1c-5.6,0-10.1-4.6-10.1-10.1c0-5.6,4.5-10.1,10.1-10.1
+        <path class="text-black dark:text-white group-hover:text-black dark:group-hover:text-white" fill="currentColor" d="M88.7,56.8c0,5.5-4.5,10.1-10.1,10.1c-5.6,0-10.1-4.6-10.1-10.1c0-5.6,4.5-10.1,10.1-10.1
           C84.2,46.7,88.7,51.3,88.7,56.8z"/>
       </svg>
     `
@@ -504,8 +506,8 @@ const socialLinks = [
     url: '#',
     type: 'email',
     icon: `
-      <svg class="w-5 h-5 stroke-current group-hover:text-red-500 transition-colors" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+      <svg class="w-5 h-5 group-hover:text-red-500 dark:group-hover:text-red-400 transition-colors" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
       </svg>
     `
   }
@@ -883,7 +885,7 @@ onUnmounted(() => {
         </button>
 
         <!-- Link Section -->
-        <div class="mt-10 grid grid-cols-2 sm:flex sm:justify-center sm:gap-8 text-sm font-medium text-black gap-4">
+        <div class="mt-10 grid grid-cols-2 sm:flex sm:justify-center sm:gap-8 text-sm font-medium gap-4">
           <a 
             v-for="link in socialLinks" 
             :key="link.name"
@@ -891,7 +893,12 @@ onUnmounted(() => {
             :target="link.type === 'email' ? '_self' : '_blank'"
             :rel="link.type === 'email' ? '' : 'noopener noreferrer'"
             @click="link.type === 'email' ? openContactForm($event) : null"
-            class="group flex items-center justify-center gap-2 hover:text-black transition-colors cursor-pointer"
+            :class="[
+              'group flex items-center justify-center gap-2 transition-colors cursor-pointer',
+              isDarkMode 
+                ? 'text-white hover:text-gray-300' 
+                : 'text-black hover:text-black'
+            ]"
           >
             <span v-html="link.icon" class="icon-container"></span>
             <span class="underline-offset-4 group-hover:underline">{{ link.name }}</span>
@@ -1283,11 +1290,14 @@ onUnmounted(() => {
         <!-- Dark Mode Switch Section -->
         <button
           @click="isDarkMode = !isDarkMode"
-          class="flex items-center justify-center
-                px-5 py-1 rounded-full
-                bg-transparent text-black
-                transition-all duration-150
-                hover:bg-neutral-100"
+          :class="[
+            'flex items-center justify-center',
+            'px-5 py-1 rounded-full',
+            'bg-transparent transition-all duration-150',
+            isDarkMode 
+              ? 'text-white hover:bg-neutral-800' 
+              : 'text-black hover:bg-neutral-100'
+          ]"
           aria-label="Toggle dark mode"
           title="Toggle dark mode"
         >
@@ -1320,12 +1330,15 @@ onUnmounted(() => {
           <button
             v-if="!musicPlayerExpanded"
             @click="toggleMusicPlayer"
-            :class="{'sink-down': isToggling}"
-            class="flex items-center justify-center
-                  px-5 py-1 rounded-full
-                  bg-transparent text-black
-                  transition-all duration-150
-                  hover:bg-neutral-100"
+            :class="[
+              'flex items-center justify-center',
+              'px-5 py-1 rounded-full',
+              'bg-transparent transition-all duration-150',
+              isDarkMode 
+                ? 'text-white hover:bg-neutral-800' 
+                : 'text-black hover:bg-neutral-100',
+              {'sink-down': isToggling}
+            ]"
             aria-label="Toggle music player"
             title="Toggle music player"
           >
@@ -1343,11 +1356,14 @@ onUnmounted(() => {
         <!-- Vertical Menu Toggle Section -->
         <button
           @click="toggleMenu"
-          class="flex items-center justify-center
-                px-5 py-1 rounded-full
-                bg-transparent text-black
-                transition-all duration-150
-                hover:bg-neutral-100"
+          :class="[
+            'flex items-center justify-center',
+            'px-5 py-1 rounded-full',
+            'bg-transparent transition-all duration-150',
+            isDarkMode 
+              ? 'text-white hover:bg-neutral-800' 
+              : 'text-black hover:bg-neutral-100'
+          ]"
           aria-label="Toggle menu"
           title="Toggle menu"
         >
