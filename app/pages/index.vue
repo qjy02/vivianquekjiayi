@@ -146,43 +146,6 @@ const loadAllAlbumArts = async () => {
   }
 }
 
-const playNewTrack = async () => {
-  isLoading.value = true
-  isPlaying.value = false
-  
-  try {
-    if (!albumArts.value[currentTrack.value.src]) {
-      await extractAlbumArt(currentTrack.value.src)
-    }
-    
-    await nextTick()
-    
-    currentTime.value = 0
-    duration.value = 0 // Add this line to reset duration
-    
-    audioRef.value.load()
-    
-    await new Promise((resolve) => {
-      const checkReady = () => {
-        if (audioRef.value.readyState >= 1) {
-          resolve()
-        } else {
-          setTimeout(checkReady, 100)
-        }
-      }
-      checkReady()
-    })
-    
-    await audioRef.value.play()
-    isPlaying.value = true
-  } catch (error) {
-    console.error('Playback failed:', error)
-    isPlaying.value = false
-  } finally {
-    isLoading.value = false
-  }
-}
-
 // Load album art on component mount
 onMounted(() => {
   // Load album arts for all tracks in background
@@ -243,12 +206,58 @@ const formatTime = (seconds) => {
 }
 
 // --- Music Actions ---
-const toggleMusicPlayer = () => {
-  isToggling.value = true
-  setTimeout(() => {
-    musicPlayerExpanded.value = !musicPlayerExpanded.value
-    isToggling.value = false
-  }, 300)
+// Initialize audio element separately
+onMounted(() => {
+  // Create audio element if it doesn't exist
+  if (!audioRef.value) {
+    const audio = new Audio()
+    audio.preload = 'metadata'
+    audio.addEventListener('timeupdate', onTimeUpdate)
+    audio.addEventListener('loadedmetadata', onLoadedMetadata)
+    audio.addEventListener('ended', nextTrack)
+    
+    // Store it in a data attribute or ref
+    audioRef.value = audio
+  }
+})
+
+const playNewTrack = async () => {
+  isLoading.value = true
+  isPlaying.value = false
+  
+  try {
+    if (!albumArts.value[currentTrack.value.src]) {
+      await extractAlbumArt(currentTrack.value.src)
+    }
+    
+    await nextTick()
+    
+    currentTime.value = 0
+    duration.value = 0
+    
+    // Update audio source
+    audioRef.value.src = currentTrack.value.src
+    audioRef.value.load()
+    
+    await new Promise((resolve) => {
+      const checkReady = () => {
+        if (audioRef.value.readyState >= 1) {
+          resolve()
+        } else {
+          setTimeout(checkReady, 100)
+        }
+      }
+      checkReady()
+    })
+    
+    await audioRef.value.play()
+    isPlaying.value = true
+  } catch (error) {
+    console.error('Playback failed:', error)
+    isPlaying.value = false
+  } finally {
+    isLoading.value = false
+  }
 }
 
 const toggleMusic = () => {
@@ -265,6 +274,15 @@ const toggleMusic = () => {
       isPlaying.value = false
     })
   }
+}
+
+const toggleMusicPlayer = () => {
+  isToggling.value = true
+  
+  setTimeout(() => {
+    musicPlayerExpanded.value = !musicPlayerExpanded.value
+    isToggling.value = false
+  }, 300)
 }
 
 const nextTrack = () => {
@@ -1364,13 +1382,23 @@ onUnmounted(() => {
         </div>
       </transition>
 
+      <!-- Audio Section -->
+      <audio 
+        ref="audioRef" 
+        :src="currentTrack.src" 
+        preload="metadata" 
+        @timeupdate="onTimeUpdate" 
+        @loadedmetadata="onLoadedMetadata" 
+        @ended="nextTrack"
+        style="display: none"
+      ></audio>
+
       <!-- Music Player Section -->
       <transition name="music-player">
         <div 
           v-if="musicPlayerExpanded"
           class="fixed bottom-0 left-0 z-50 w-full bg-neutral-900 border-t border-neutral-800 shadow-[0_-2px_10px_rgba(0,0,0,0.3)] text-white px-3 py-2"
         >
-          <audio ref="audioRef" :src="currentTrack.src" preload="metadata" @timeupdate="onTimeUpdate" @loadedmetadata="onLoadedMetadata" @ended="nextTrack"></audio>
 
           <!-- Single Row Layout -->
           <div class="max-w-7xl mx-auto flex items-center justify-between gap-2">
