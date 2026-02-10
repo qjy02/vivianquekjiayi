@@ -69,8 +69,15 @@ onMounted(() => {
 
 const playlist = [
   {
+    title: 'Whispering to the Moon',
+    artist: '夕野ことび',
+    src: `${baseURL}music/whisperingtothemoon.mp3`,
+    link: 'https://suno.com/s/VByDJy3XWz1yAD0o',
+    color: 'from-sky-400 to-indigo-600'
+  },
+  {
     title: '小さな世界',
-    artist: 'SHIZE/夕野ことび',
+    artist: 'IZE/夕野ことび',
     src: `${baseURL}music/smallworld.mp3`,
     link: 'https://suno.com/s/jIVFSwQPr0oRF5f2',
     color: 'from-blue-500 to-cyan-600'
