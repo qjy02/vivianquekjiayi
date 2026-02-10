@@ -1576,7 +1576,7 @@ onUnmounted(() => {
                   required
                   class="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition"
                   :class="{ 'border-red-500': formErrors.subject }"
-                  placeholder="What's this about?"
+                  placeholder="Title of your message"
                 />
                 <p v-if="formErrors.subject" class="mt-1 text-xs text-red-600">{{ formErrors.subject }}</p>
               </div>
