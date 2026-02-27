@@ -69,13 +69,6 @@ onMounted(() => {
 
 const playlist = [
   {
-    title: 'Whispering to the Moon',
-    artist: '夕野ことび',
-    src: `${baseURL}music/whisperingtothemoon.mp3`,
-    link: 'https://suno.com/s/VByDJy3XWz1yAD0o',
-    color: 'from-sky-400 to-indigo-600'
-  },
-  {
     title: '小さな世界',
     artist: 'IZE/夕野ことび',
     src: `${baseURL}music/smallworld.mp3`,
@@ -95,6 +88,13 @@ const playlist = [
     src: `${baseURL}music/shiningcorner.mp3`,
     link: 'https://suno.com/s/ri1BKtFwR07R0Cyy',
     color: 'from-emerald-500 to-teal-600'
+  },
+  {
+    title: 'Whispering to the Moon',
+    artist: '夕野ことび',
+    src: `${baseURL}music/whisperingtothemoon.mp3`,
+    link: 'https://suno.com/s/VByDJy3XWz1yAD0o',
+    color: 'from-sky-400 to-indigo-600'
   }
 ]
 
@@ -851,15 +851,25 @@ onUnmounted(() => {
     <main class="max-w-2xl mx-auto px-6 py-16 relative">
       <!-- Header Section-->
       <header id="header" class="flex flex-col items-center text-center">
+        <!-- Profile Image Section -->
         <div class="relative group">
           <div class="absolute -inset-1 bg-gradient-to-r from-neutral-200 to-neutral-300 rounded-full opacity-50 blur group-hover:opacity-75 transition duration-500"></div>
-            <img
-              :src="getImagePath('/images/Girl/Girl_Profile.png')"
-              alt="Vivian Quek"
-              class="relative w-32 h-32 rounded-full object-cover shadow-sm ring-4 ring-white/30"
-            />
-          </div>
 
+          <a 
+            href="https://kotobicorner.blogspot.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="relative block"
+          >
+            <img
+              :src="getImagePath('/images/Profile/utage.png')"
+              alt="Vivian Quek"
+              class="w-32 h-32 rounded-full object-cover shadow-sm ring-4 ring-white/30 cursor-pointer"
+            />
+          </a>
+        </div>
+
+        <!-- Name and Title Section -->
         <h1 class="mt-6 text-3xl font-semibold tracking-wide text-neutral-900">
           Vivian Quek Jia Yi
         </h1>
