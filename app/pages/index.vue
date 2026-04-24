@@ -879,7 +879,7 @@ onUnmounted(() => {
 
         <div class="mt-8 max-w-lg space-y-4 text-black leading-relaxed text-center">
           <p>
-            Hi! I am a full-stack web developer with a little over a year of experience, from building simple websites to complete retail systems. I enjoy learning new things and exploring how technology can make life more enjoyable.
+            Hi! I am a full-stack web developer with over two years of experience, from building simple websites to complete retail systems. I enjoy learning new things and exploring how technology can make life more enjoyable.
           </p>
         </div>
 
