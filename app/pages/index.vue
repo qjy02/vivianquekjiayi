@@ -620,8 +620,8 @@ const projects = [
 const workExperiences = [
   {
     year: 'Dec 2025 - Present',
-    role: 'Freelance Web Designer (Part Time)',
-    company: 'Self-Employed',
+    role: 'Freelance Full Stack Web Developer (Remote)',
+    company: 'Stealth Startup (Client-based)',
     points: [
       'Build responsive personal and business webpages for clients using HTML/Tailwind CSS, JavaScript, and modern frameworks',
       'Work directly with clients to deliver clean, functional webpages that meet their specific requirements'
