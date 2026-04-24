@@ -71,28 +71,28 @@ const playlist = [
   {
     title: '小さな世界',
     artist: 'IZE/夕野ことび',
-    src: `${baseURL}music/smallworld.mp3`,
+    src: `${baseURL}music/music1.mp3`,
     link: 'https://suno.com/s/jIVFSwQPr0oRF5f2',
     color: 'from-blue-500 to-cyan-600'
   },
   {
     title: '小小空间',
     artist: '夕野ことび',
-    src: `${baseURL}music/littlespace.mp3`,
+    src: `${baseURL}music/music2.mp3`,
     link: 'https://suno.com/s/jP79bdv9jDnOxagw',
     color: 'from-indigo-500 to-purple-600'
   },
   {
     title: '微光角落',
     artist: '夕野ことび',
-    src: `${baseURL}music/shiningcorner.mp3`,
+    src: `${baseURL}music/music3.mp3`,
     link: 'https://suno.com/s/ri1BKtFwR07R0Cyy',
     color: 'from-emerald-500 to-teal-600'
   },
   {
     title: 'Whispering to the Moon',
     artist: '夕野ことび',
-    src: `${baseURL}music/whisperingtothemoon.mp3`,
+    src: `${baseURL}music/music4.mp3`,
     link: 'https://suno.com/s/VByDJy3XWz1yAD0o',
     color: 'from-sky-400 to-indigo-600'
   }
