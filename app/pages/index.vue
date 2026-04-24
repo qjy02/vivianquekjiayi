@@ -55,7 +55,7 @@ const contactForm = ref({
 })
 const formErrors = ref({})
 const isSubmitting = ref(false)
-const isProd = typeof window !== 'undefined' && window.location.hostname === 'qjy02.github.io'
+const isProd = process.env.NODE_ENV === 'production'
 const baseURL = isProd ? '/vivianquekjiayi/' : '/'
 
 const showClickHint = ref(true)
