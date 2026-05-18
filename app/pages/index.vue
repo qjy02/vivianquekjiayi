@@ -623,8 +623,12 @@ const workExperiences = [
     role: 'Freelance Full Stack Web Developer (Remote)',
     company: 'Stealth Startup (Client-based)',
     points: [
-      'Build responsive personal and business webpages for clients using HTML/Tailwind CSS, JavaScript, and modern frameworks',
-      'Work directly with clients to deliver clean, functional webpages that meet their specific requirements'
+        'Developed responsive personal and business websites for clients using HTML, Tailwind CSS, JavaScript, and modern frameworks',
+        'Built clean, functional, and user-focused web interfaces tailored to client requirements and project goals',
+        'Collaborated directly with clients to gather requirements, refine UI/UX, and deliver iterative improvements',
+        'Worked with modern frontend frameworks including React, Vue, and Nuxt.js, with exposure to backend technologies such as Python, Java, and C++ in project contexts',
+        'Focused on delivering responsive, mobile-friendly designs with smooth user experience and performance optimization',
+        'Tech Stack: HTML, Tailwind CSS, JavaScript, React, Vue, Nuxt.js, Python, Java, C++'
     ],
     desc: 'Creating custom websites for personal and small business clients',
     showMore: false
@@ -661,11 +665,13 @@ const workExperiences = [
     role: 'Game Development Research Intern',
     company: 'CUCC FIST MMU (Melaka, Malaysia)',
     points: [
-      'Developed a Voice Recognition Maze Game for Telekom Malaysia\'s 2020 Game Campaign using HTML, CSS, and JavaScript',
-      'Implemented voice-controlled gameplay, interactive storylines with multiple endings, and chatbot integration',
-      'Designed and integrated virtual characters (TM-Kun & Unifi-Chan) for user engagement',
-      'Collaborated remotely in a 2-person development team during the COVID-19 period',
-      'Created UI/UX banners and interactive prototypes using Figma and Mockflow'
+      'Developed a Voice Recognition Maze Game for Telekom Malaysia’s 2020 Game Campaign using HTML, CSS, and JavaScript',
+      'Implemented voice-controlled gameplay mechanics, interactive storytelling, and multiple game endings',
+      'Integrated chatbot functionality to enhance user interaction and engagement within the game experience',
+      'Designed and incorporated virtual characters (TM-Kun & Unifi-Chan) to improve user engagement and storytelling',
+      'Created UI/UX assets including banners and interactive prototypes using Figma and Mockflow',
+      'Focused on combining game design, interactivity, and user engagement for a web-based gaming experience',
+      'Tech Stack: HTML, CSS, JavaScript, Figma, Mockflow'
     ],
     desc: 'Developed a voice-controlled maze game with interactive storylines and virtual characters for Telekom Malaysia, collaborating remotely and designing UI/UX prototypes using Figma and Mockflow',
     showMore: false
@@ -856,13 +862,12 @@ onUnmounted(() => {
           <div class="absolute -inset-1 bg-gradient-to-r from-neutral-200 to-neutral-300 rounded-full opacity-50 blur group-hover:opacity-75 transition duration-500"></div>
 
           <a 
-            href="https://kotobicorner.blogspot.com/"
-            target="_blank"
+            href="#"
             rel="noopener noreferrer"
             class="relative block"
           >
             <img
-              :src="getImagePath('/images/Profile/utage.png')"
+              :src="getImagePath('/images/Profile/vivianquekjiayi.jpg')"
               alt="Vivian Quek"
               class="w-32 h-32 rounded-full object-cover shadow-sm ring-4 ring-white/30 cursor-pointer"
             />
@@ -877,9 +882,9 @@ onUnmounted(() => {
           Software Engineer
         </p>
 
-        <div class="mt-8 max-w-lg space-y-4 text-black leading-relaxed text-center">
+        <div class="mt-8 max-w-lg space-y-4 text-black leading-relaxed text-justify">
           <p>
-            Hi! I am a full-stack web developer with over two years of experience, from building simple websites to complete retail systems. I enjoy learning new things and exploring how technology can make life more enjoyable.
+            Hi! I am a system developer with experience in full-stack web development, IT support, system deployment, and machine learning projects. Currently, I am open to opportunities in software development, IT support, and data/AI-related roles.
           </p>
         </div>
 
