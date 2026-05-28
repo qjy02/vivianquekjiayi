@@ -620,8 +620,8 @@ const projects = [
 const workExperiences = [
   {
     year: 'Dec 2025 - Present',
-    role: 'Freelance Full Stack Web Developer (Remote)',
-    company: 'Stealth Startup (Client-based)',
+    role: 'Full Stack IT Developer (Remote)',
+    company: 'Stealth Startup',
     points: [
         'Developed responsive personal and business websites for clients using HTML, Tailwind CSS, JavaScript, and modern frameworks',
         'Built clean, functional, and user-focused web interfaces tailored to client requirements and project goals',
@@ -635,15 +635,15 @@ const workExperiences = [
   },
   {
     year: 'Mar 2024 - Dec 2025',
-    role: 'Software Engineer (Backend)',
+    role: 'Software Development Engineer (Backend)',
     company: 'Panda Software House Sdn. Bhd. (Melaka, Malaysia)',
     points: [
-      'Developed RESTful APIs using Python Django Rest Framework for the Sublet Rental Management System to manage tenant agreements, billing, and financial records',
-      'Handle E-Invoicing Portal System to support tax entity management, retailer onboarding, and B2B transactions',
-      'Designed and implemented APIs for the Rebate Income Management System (RIMS) to handle trading agreements, claims, rebates, and financial summaries',
-      'Worked closely with multiple departments to handle client support tickets and system change requests',
-      'Managed data synchronization across multiple systems (backend portals, invoicing, and accounting platforms)'
-    ],
+      'Rebate Income Management System (RIMS): Architected the backend from scratch to manage trading term agreements and claims; developed automated scripts to aggregate large datasets from cloud servers using SQL unions and multi-stage calculations, ensuring smooth integration in financial rebate records',
+      'Sublet Rental Management System: Automated complex financial workflows by developing RESTful APIs and Cronjobs to handle tenant billing, lot status and tenancy agreements; integrated AutoCount MySQL servers to synchronize accounting debtor statements across multiple platforms, ensuring data integrity',
+      'E-Invoicing Portal: Streamlined retailer onboarding by implementing automated scripts and software support systems, drastically reducing onboarding friction and technical support tickets for B2B transactions',
+      'System Synchronization & Support: Managed real-time data synchronization between backend portals and accounting platforms; collaborated with cross-functional teams to resolve high-priority support tickets and maintaining system reliability and performance',
+      'Tech Stack: Python, Django, FastAPI, MySQL, MSSQL, Vue.js, Quasar, HTML, Javascript, CSS, Postman, Linux'    
+  ],
     desc: 'Developed and maintained RESTful APIs for multiple management systems',
     showMore: false
   },
@@ -652,10 +652,13 @@ const workExperiences = [
     role: 'Frontend Web Developer Intern',
     company: 'Moabi PLT (Melaka, Malaysia)',
     points: [
-      'Developed responsive and user-friendly UI components for the MakanHere POS food ordering app using the Angular framework',
-      'Conducted research and implementation of Storybook (Angular Framework) for isolated UI component development, testing, and documentation',
-      'Collaborated with UI/UX team on small projects to ensure consistent UI/UX across the application',
-      'Supported front-end development tasks focused on simple, usable and responsive designs'
+      'Developed responsive and user-friendly UI components for the MakanHere POS food ordering application using Angular framework',
+      'Designed and implemented web pages and dialog components with full desktop and mobile responsiveness',
+      'Collaborated with UI/UX team to ensure consistent and user-friendly interface design across the application',
+      'Assisted in redesigning interfaces based on updated Figma designs and improved UI alignment with product requirements',
+      'Conducted research and implemented Storybook (Angular) for isolated component development, testing, and documentation',
+      'Worked closely with team members on UI development tasks for food ordering system',
+      'Tech Stack: Angular, TypeScript, HTML, CSS, Storybook, Figma, Docker'
     ],
     desc: 'Built responsive UI components for the MakanHere POS app with Angular and Storybook, collaborating with the UI/UX team on clean, usable designs',
     showMore: false
@@ -800,8 +803,8 @@ const handleDownload = () => {
     
     try {
       const link = document.createElement('a')
-      link.href = getAssetPath('/files/VivianQuekJiaYi_Resume.pdf')
-      link.download = 'VivianQuekJiaYi_Resume.pdf'
+      link.href = getAssetPath('/files/Resume_VivianQuekJiaYi.pdf')
+      link.download = 'Resume_VivianQuekJiaYi.pdf'
       document.body.appendChild(link)
       link.click()
       document.body.removeChild(link)
@@ -879,7 +882,7 @@ onUnmounted(() => {
           Vivian Quek Jia Yi
         </h1>
         <p class="mt-2 text-neutral-500 font-medium">
-          Software Engineer
+          Software Development Engineer / AI Enthusiast
         </p>
 
         <div class="mt-8 max-w-lg space-y-4 text-black leading-relaxed text-justify">
