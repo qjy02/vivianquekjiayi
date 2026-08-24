@@ -519,14 +519,14 @@ const skills = [
     category: 'Frontend',
     items: [
       'HTML', 'CSS', 'Tailwind CSS', 'JavaScript (ES6+)',
-      'TypeScript', 'React',
+      'TypeScript', 'React', 'Vue', 'Vuetify',
       'Angular', 'Quasar', 'Vite', 'Vue.js', 'Nuxt.js', 'Next.js', 'EmailJS'
     ]
   },
   {
     category: 'Backend',
     items: [
-      'Python', 'Django', 'FastAPI', 'Node.js', 'PHP', 'Java', 'C', 'C++'
+      'C#', 'ASP .NET Core', 'MVC', 'Python', 'Django', 'FastAPI', 'Node.js', 'PHP', 'Java', 'C', 'C++'
     ]
   },
   {
@@ -538,7 +538,7 @@ const skills = [
   {
     category: 'Development & DevOps Tools',
     items: [
-      'Git', 'GitHub', 'Visual Studio Code', 'IntelliJ IDEA', 'Oracle', 'CodeBlocks', 'Jira', 'Linux (Ubuntu)', 'WinSCP', 'PuTTY', 'ngrok'
+      'Git', 'GitHub', 'Visual Studio Code', 'IntelliJ IDEA', 'Oracle', 'CodeBlocks', 'Jira', 'Linux (Ubuntu)', 'WinSCP', 'PuTTY', 'ngrok', 'Docker', 'Kubernetes', 'n8n'
     ]
   },
   {
@@ -619,8 +619,22 @@ const projects = [
 // --- Data: Work Experience ---
 const workExperiences = [
   {
-    year: 'Dec 2025 - Present',
-    role: 'Full Stack IT Developer (Remote)',
+    year: 'June 2026 - Present',
+    role: 'IT Application Executive',
+    company: 'Kotra Pharma (M) Sdn. Bhd. (Melaka, Malaysia)',
+    points: [
+      'Maintain and enhance the My Kotra Pharma Portal, supporting backend API development, frontend integration, and ongoing improvements to internal business services.',
+      'Contribute to Kotra Hub, a centralized digital platform integrating multiple organizational systems, including AI chatbot integration.',
+      'Digitalize business processes by converting physical paperwork into digital workflows, including employee onboarding and vendor registration.',
+      'Provide technical support and collaboration through application ticketing, troubleshooting, and coordination with users and stakeholders.',
+      'Tech Stack: ASP.NET Core, C#, MVC Framework, Vue, Vuetify, PHP, CodeIgniter, MSSQL, Docker, n8n'    
+  ],
+    desc: 'Responsible for full stack development, system and data integration, particular in changing paperwork into digitalized form with AI exposure',
+    showMore: false
+  },
+  {
+    year: 'Jan 2026 - June 2026',
+    role: 'Full Stack Web Developer (Remote)',
     company: 'Stealth Startup',
     points: [
         'Developed responsive personal and business websites for clients using HTML, Tailwind CSS, JavaScript, and modern frameworks',
@@ -642,9 +656,9 @@ const workExperiences = [
       'Sublet Rental Management System: Automated complex financial workflows by developing RESTful APIs and Cronjobs to handle tenant billing, lot status and tenancy agreements; integrated AutoCount MySQL servers to synchronize accounting debtor statements across multiple platforms, ensuring data integrity',
       'E-Invoicing Portal: Streamlined retailer onboarding by implementing automated scripts and software support systems, drastically reducing onboarding friction and technical support tickets for B2B transactions',
       'System Synchronization & Support: Managed real-time data synchronization between backend portals and accounting platforms; collaborated with cross-functional teams to resolve high-priority support tickets and maintaining system reliability and performance',
-      'Tech Stack: Python, Django, FastAPI, MySQL, MSSQL, Vue.js, Quasar, HTML, Javascript, CSS, Postman, Linux'    
+      'Tech Stack: ASP.NET Core, C#, MVC Framework, Vue, Vuetify, PHP, CodeIgniter, MSSQL, Docker, n8n'    
   ],
-    desc: 'Developed and maintained RESTful APIs for multiple management systems',
+    desc: 'Responsible for full stack development, system and data integration, particularly in changing paperwork into digitalized form with AI exposure',
     showMore: false
   },
   {
