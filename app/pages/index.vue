@@ -656,7 +656,7 @@ const workExperiences = [
       'Sublet Rental Management System: Automated complex financial workflows by developing RESTful APIs and Cronjobs to handle tenant billing, lot status and tenancy agreements; integrated AutoCount MySQL servers to synchronize accounting debtor statements across multiple platforms, ensuring data integrity',
       'E-Invoicing Portal: Streamlined retailer onboarding by implementing automated scripts and software support systems, drastically reducing onboarding friction and technical support tickets for B2B transactions',
       'System Synchronization & Support: Managed real-time data synchronization between backend portals and accounting platforms; collaborated with cross-functional teams to resolve high-priority support tickets and maintaining system reliability and performance',
-      'Tech Stack: ASP.NET Core, C#, MVC Framework, Vue, Vuetify, PHP, CodeIgniter, MSSQL, Docker, n8n'    
+      'Tech Stack: Python, Django Framework, FastAPI, Vue, Quasar Framework, MySQL, MSSQL, Markdown Language, HTML, CSS, Javascript'    
   ],
     desc: 'Responsible for full stack development, system and data integration, particularly in changing paperwork into digitalized form with AI exposure',
     showMore: false
