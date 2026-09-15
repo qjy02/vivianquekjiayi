@@ -817,8 +817,8 @@ const handleDownload = () => {
     
     try {
       const link = document.createElement('a')
-      link.href = getAssetPath('/files/Resume_VivianQuekJiaYi.pdf')
-      link.download = 'Resume_VivianQuekJiaYi.pdf'
+      link.href = getAssetPath('/files/VivianQuekJiaYi_Resume.pdf')
+      link.download = 'VivianQuekJiaYi_Resume.pdf'
       document.body.appendChild(link)
       link.click()
       document.body.removeChild(link)
